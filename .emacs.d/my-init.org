@@ -1,7 +1,8 @@
 * Emacs Configuration
 
-** Styling
-*** Basic styles
+** Basic config
+
+*** Sounds, colors, and shapes (layout)
 
 A bell is annoying to everyone.
 #+BEGIN_SRC emacs-lisp
@@ -15,7 +16,23 @@ Use as much screen real estate as possible for actual content.
   (scroll-bar-mode -1)
 #+END_SRC
 
+*** Files
+
+Backups aren't super-helpful
+#+BEGIN_SRC emacs-lisp
+  (setq make-backup-files nil)
+#+END_SRC
+
+*** Characters
+
+Tabs and spaces
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq standard-indent 2)
+#+END_SRC
+
 ** Modes
+
 *** Org mode
 
 I really prefer hard wrapped lines in my text-y modes.
