@@ -1,4 +1,5 @@
 (source melpa)
 
+(depends-on "enh-ruby-mode")
 (depends-on "magit")
 (depends-on "use-package")
