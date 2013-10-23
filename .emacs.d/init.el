@@ -37,6 +37,14 @@
 ;;;;;;;;;;;
 ;; Modes ;;
 ;;;;;;;;;;;
+(require 'use-package)
+
+;;; Magit
+(use-package magit
+             :bind ("C-x g" . magit-status)
+             :config (progn
+                       (setq magit-remote-ref-format 'remote-slash-name)
+                       (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
 
 ;;; Org mode
 
