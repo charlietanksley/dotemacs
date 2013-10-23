@@ -1,0 +1,4 @@
+(source melpa)
+
+(depends-on "magit")
+(depends-on "use-package")

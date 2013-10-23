@@ -1,3 +1,10 @@
+;;;;;;;;;;;;;;
+;; Packages ;;
+;;;;;;;;;;;;;;
+
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Basic config ;;
 ;;;;;;;;;;;;;;;;;;
