@@ -41,13 +41,12 @@
 
 ;;; Magit
 (use-package magit
-             :bind ("C-x g" . magit-status)
-             :config (progn
-                       (setq magit-remote-ref-format 'remote-slash-name)
-                       (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
+  :bind ("C-x g" . magit-status)
+  :config (progn
+            (setq magit-remote-ref-format 'remote-slash-name)
+            (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
 
 ;;; Org mode
-
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;;; Ruby mode
@@ -55,5 +54,4 @@
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
             (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))))
-
 
