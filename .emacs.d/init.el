@@ -82,3 +82,11 @@
 (use-package smex
   :init (smex-initialize)
   :bind ("M-x" . smex))
+
+;;; YAML
+(use-package yaml-mode
+  :config (progn
+            (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+            (add-hook 'yaml-mode-hook
+                      '(lambda ()
+                         (define-key yaml-mode-map "\C-m" newline-and-indent)))))

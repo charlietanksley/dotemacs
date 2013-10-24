@@ -4,6 +4,7 @@
 (depends-on "magit")
 (depends-on "use-package")
 (depends-on "smex")
+(depends-on "yaml-mode")
 
 ;; Colors
 (depends-on "alect-themes")
