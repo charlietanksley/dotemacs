@@ -26,6 +26,10 @@
 ;; Backups aren't super-helpful
 (setq make-backup-files nil)
 
+;; Customizations should live out of the way
+(setq custom-file "~/.emacs.d/init.d/emacs-custom.el")
+(load custom-file 'noerror)
+
 ;;;;;;;;;;;;;;;;
 ;; Characters ;;
 ;;;;;;;;;;;;;;;;
@@ -59,4 +63,3 @@
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
             (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))))
-
