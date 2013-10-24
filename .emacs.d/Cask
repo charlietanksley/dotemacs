@@ -3,3 +3,8 @@
 (depends-on "enh-ruby-mode")
 (depends-on "magit")
 (depends-on "use-package")
+
+;; Colors
+(depends-on "alect-themes")
+(depends-on "clues-theme")
+(depends-on "subatomic256-theme")
