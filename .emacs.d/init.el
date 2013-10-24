@@ -126,3 +126,7 @@
             (add-hook 'yaml-mode-hook
                       '(lambda ()
                          (define-key yaml-mode-map "\C-m" newline-and-indent)))))
+
+;;; Windmove
+(use-package windmove
+  :config (windmove-default-keybindings 'shift))
