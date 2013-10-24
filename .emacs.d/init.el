@@ -100,9 +100,17 @@
 
 ;;; Ruby mode
 (use-package enh-ruby-mode
-  :config (progn
-            (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-            (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))))
+  :config
+  (progn
+      (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
+  :mode (("\\.rb$" . ruby-mode)
+         ("\\.rake$" . ruby-mode)
+         ("\\.gemspec$" . ruby-mode)
+         ("\\.ru$" . ruby-mode)
+         ("Rakefile$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("Capfile$" . ruby-mode)
+         ("Guardfile$" . ruby-mode)))
 
 ;;; Smex
 (use-package smex
