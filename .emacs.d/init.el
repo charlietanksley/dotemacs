@@ -63,7 +63,6 @@
 (require 'use-package)
 
 ;;; Ido
-
 (use-package ido
   :init (ido-mode 1)
   :config
@@ -90,7 +89,6 @@
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;;; Projectile
-
 (use-package projectile
   :init (projectile-global-mode 1)
   :config
