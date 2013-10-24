@@ -1,0 +1,18 @@
+* Dotemacs
+
+Here is my emacs configuration.  It isn't really intended for public
+consumption, though obviously anyone is free to do anything they want
+with it.
+
+** Usage
+
+I'm using [[http://cask.github.io][Cask]] to manage my packages as far as possible.  So to get
+everything up and running here you should:
+
+1. Install Cask (see link above).
+2. Within your =.emacs.d= directory, run =cask install=.
+
+That should be it for now.  Note that I've split this off from the
+rest of my dotfiles and am experimenting with slowly migrating to [[http://www.gnu.org/software/stow/][GNU
+Stow]] for my dotfile management.
+
