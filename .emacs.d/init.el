@@ -40,7 +40,8 @@
 
 (require 'whitespace)
 (setq whitespace-style
-      '(face trailing lines-tail tabs))
+      '(face trailing lines-tail tabs)
+      whitespace-line-column 80)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;;;;;;;;;;
