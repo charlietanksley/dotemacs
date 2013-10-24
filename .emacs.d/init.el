@@ -43,6 +43,14 @@
       '(face trailing lines-tail tabs))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
+;;;;;;;;;;
+;; Keys ;;
+;;;;;;;;;;
+
+; Set my command keys to meta keys.
+(setq mac-command-modifier 'meta)
+(setq mac-right-option-modifier 'super)
+
 ;;;;;;;;;;;
 ;; Modes ;;
 ;;;;;;;;;;;
