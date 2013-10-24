@@ -26,6 +26,9 @@
 ;; Backups aren't super-helpful
 (setq make-backup-files nil)
 
+;; keep pace with files on disk
+(global-auto-revert-mode t)
+
 ;; Customizations should live out of the way
 (setq custom-file "~/.emacs.d/init.d/emacs-custom.el")
 (load custom-file 'noerror)
