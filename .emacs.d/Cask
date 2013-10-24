@@ -4,8 +4,9 @@
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
-(depends-on "use-package")
+(depends-on "projectile")
 (depends-on "smex")
+(depends-on "use-package")
 (depends-on "yaml-mode")
 
 ;; Colors

@@ -87,6 +87,17 @@
 ;;; Org mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
+;;; Projectile
+
+(use-package projectile
+  :init (projectile-global-mode 1)
+  :config
+  (progn
+    (setq projectile-enable-caching t)
+    (setq projectile-require-project-root nil)
+    (setq projectile-completion-system 'projectile-completion-fn)
+    (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+
 ;;; Ruby mode
 (use-package enh-ruby-mode
   :config (progn
