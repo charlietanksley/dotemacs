@@ -55,9 +55,11 @@
 (setq mac-command-modifier 'meta)
 (setq mac-right-option-modifier 'super)
 
-;;;;;;;;;;;
-;; Modes ;;
-;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; Modes and packages ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'use-package)
 
 ;;; Magit
@@ -75,3 +77,8 @@
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
             (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))))
+
+;;; Smex
+(use-package smex
+  :init (smex-initialize)
+  :bind ("M-x" . smex))

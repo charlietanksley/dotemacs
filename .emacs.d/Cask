@@ -3,6 +3,7 @@
 (depends-on "enh-ruby-mode")
 (depends-on "magit")
 (depends-on "use-package")
+(depends-on "smex")
 
 ;; Colors
 (depends-on "alect-themes")
