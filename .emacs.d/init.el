@@ -62,6 +62,21 @@
 
 (require 'use-package)
 
+;;; Ido
+
+(use-package ido
+  :init (ido-mode 1)
+  :config
+  (progn
+    (setq ido-case-fold t)
+    (setq ido-everywhere t)
+    (setq ido-enable-prefix nil)
+    (setq ido-enable-flex-matching t)
+    (setq ido-create-new-buffer 'always)
+    (setq ido-max-prospects 10)
+    (setq ido-file-extensions-order '(".rb" ".el" ".js" ".coffee"))
+    (add-to-list 'ido-ignore-files "\\.DS_Store")))
+
 ;;; Magit
 (use-package magit
   :bind ("C-x g" . magit-status)
