@@ -34,6 +34,11 @@
 (setq-default indent-tabs-mode nil)
 (setq standard-indent 2)
 
+(require 'whitespace)
+(setq whitespace-style
+      '(face trailing lines-tail tabs))
+(add-hook 'prog-mode-hook 'whitespace-mode)
+
 ;;;;;;;;;;;
 ;; Modes ;;
 ;;;;;;;;;;;
