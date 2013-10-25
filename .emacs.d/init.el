@@ -5,6 +5,12 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
+;;; Ubiquitous packages
+(require 'use-package)
+(use-package f)
+(use-package dash)
+(use-package s)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Basic config ;;
 ;;;;;;;;;;;;;;;;;;
@@ -18,6 +24,9 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+
+;; Show me the columns
+(column-number-mode 1)
 
 ;;;;;;;;;;;
 ;; Files ;;
@@ -59,8 +68,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modes and packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'use-package)
 
 ;;; Ido
 (use-package ido

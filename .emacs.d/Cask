@@ -1,10 +1,13 @@
 (source melpa)
 
+(depends-on "dash")
 (depends-on "enh-ruby-mode")
+(depends-on "f")
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
 (depends-on "projectile")
+(depends-on "s")
 (depends-on "smex")
 (depends-on "use-package")
 (depends-on "windmove")
