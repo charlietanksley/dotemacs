@@ -42,6 +42,9 @@
 (setq custom-file "~/.emacs.d/init.d/emacs-custom.el")
 (load custom-file 'noerror)
 
+(use-package uniquify
+  :config (setq uniquify-buffer-name-style 'forward))
+
 ;;;;;;;;;;;;;;;;
 ;; Characters ;;
 ;;;;;;;;;;;;;;;;
