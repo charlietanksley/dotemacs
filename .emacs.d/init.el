@@ -109,6 +109,10 @@
 ;;; Org mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
+;;; Popwin
+(use-package popwin
+  :config (setq display-buffer-function 'popwin:display-buffer))
+
 ;;; Projectile
 (use-package projectile
   :init (projectile-global-mode 1)
