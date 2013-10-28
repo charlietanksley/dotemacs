@@ -69,6 +69,11 @@
 ;; Modes and packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Hippie expand
+(global-set-key
+ (kbd "C-.")
+ 'hippie-expand)
+
 ;;; Ido
 (use-package ido
   :init (ido-mode 1)
