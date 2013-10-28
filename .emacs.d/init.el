@@ -90,6 +90,15 @@
      ido-file-extensions-order '(".rb" ".el" ".js" ".coffee"))
     (add-to-list 'ido-ignore-files "\\.DS_Store")))
 
+;;; Javascript
+(use-package js3-mode
+  :config
+  (progn
+    (js3-auto-indent-p t)
+    (js3-enter-indents-newline t)
+    (js3-indent-on-enter-key t))
+  :mode (("\\.js$" . js3-mode))
+
 ;;; Magit
 (use-package magit
   :bind ("C-x g" . magit-status)

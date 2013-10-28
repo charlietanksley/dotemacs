@@ -5,6 +5,7 @@
 (depends-on "f")
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
+(depends-on "js3-mode")
 (depends-on "magit")
 (depends-on "projectile")
 (depends-on "s")
