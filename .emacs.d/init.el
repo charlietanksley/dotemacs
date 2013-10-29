@@ -145,6 +145,9 @@
   :init (smex-initialize)
   :bind ("M-x" . smex))
 
+(use-package switch-window
+  :bind ("C-x o" . switch-window))
+
 ;;; YAML
 (use-package yaml-mode
   :config (progn
