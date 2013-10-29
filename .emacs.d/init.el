@@ -146,7 +146,7 @@
   :bind ("M-x" . smex))
 
 (use-package switch-window
-  :bind ("C-x o" . switch-window))
+  :bind ("C-x i" . switch-window))
 
 ;;; YAML
 (use-package yaml-mode
