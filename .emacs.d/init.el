@@ -72,6 +72,9 @@
 ;; Modes and packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Circe
+(use-package circe)
+
 ;;; Hippie expand
 (global-set-key
  (kbd "C-.")

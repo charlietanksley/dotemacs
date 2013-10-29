@@ -1,5 +1,6 @@
 (source melpa)
 
+(depends-on "circe")
 (depends-on "dash")
 (depends-on "enh-ruby-mode")
 (depends-on "f")
