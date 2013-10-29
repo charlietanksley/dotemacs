@@ -156,3 +156,6 @@
 ;;; Windmove
 (use-package windmove
   :config (windmove-default-keybindings 'shift))
+
+;;; Window numbering
+(use-package window-numbering)

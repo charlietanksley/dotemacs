@@ -13,6 +13,7 @@
 (depends-on "smex")
 (depends-on "use-package")
 (depends-on "windmove")
+(depends-on "window-numbering")
 (depends-on "yaml-mode")
 
 ;; Colors
