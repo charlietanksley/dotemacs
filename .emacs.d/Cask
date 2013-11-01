@@ -15,6 +15,7 @@
 (depends-on "smex")
 (depends-on "switch-window")
 (depends-on "use-package")
+(depends-on "web-mode")
 (depends-on "windmove")
 (depends-on "window-numbering")
 (depends-on "yaml-mode")

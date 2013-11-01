@@ -168,6 +168,9 @@
                       '(lambda ()
                          (define-key yaml-mode-map "\C-m" newline-and-indent)))))
 
+;;; Web-mode
+(use-package web-mode)
+
 ;;; Windmove
 (use-package windmove
   :config (windmove-default-keybindings 'shift))
