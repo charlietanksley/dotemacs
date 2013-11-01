@@ -142,7 +142,8 @@
 (use-package enh-ruby-mode
   :config
   (progn
-      (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
+    (setq ruby-deep-indent-paren nil)
+    (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
   :mode (("\\.rb$" . ruby-mode)
          ("\\.rake$" . ruby-mode)
          ("\\.gemspec$" . ruby-mode)
