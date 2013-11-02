@@ -45,6 +45,10 @@
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'forward))
 
+;; Not quite file specific, but I mostly use these interactive commands with
+;; files, so it can go here. :)
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;;;;;;;;;;;;;;;;
 ;; Characters ;;
 ;;;;;;;;;;;;;;;;
