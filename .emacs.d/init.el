@@ -157,6 +157,14 @@
          ("Capfile$" . ruby-mode)
          ("Guardfile$" . ruby-mode)))
 
+;;; Scss
+(use-package scss-mode
+  :config
+  (progn
+    (setq css-indent-offset 2)
+    (setq scss-compile-at-save nil))
+  :mode (("\\.scss$" . scss-mode)))
+
 ;;; Smex
 (use-package smex
   :init (smex-initialize)
