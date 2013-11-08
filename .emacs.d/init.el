@@ -165,6 +165,9 @@
     (setq scss-compile-at-save nil))
   :mode (("\\.scss$" . scss-mode)))
 
+;;; Slim
+(use-package slim-mode)
+
 ;;; Smex
 (use-package smex
   :init (smex-initialize)
