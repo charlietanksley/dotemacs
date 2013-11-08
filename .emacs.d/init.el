@@ -88,6 +88,14 @@
 ;;; Circe
 (use-package circe)
 
+;;; CoffeeScript
+(use-package coffee-mode
+  :config
+  (progn
+    (setq coffee-tab-width 2)
+    (setq whitespace-action '(auto-cleanup))
+    (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))))
+
 ;;; Hippie expand
 (global-set-key
  (kbd "C-.")
