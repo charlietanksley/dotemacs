@@ -28,6 +28,9 @@
 ;; Show me the columns
 (column-number-mode 1)
 
+;; indicate empty lines at the end of a file
+(setq indicate-empty-lines t)
+
 ;;;;;;;;;;;
 ;; Files ;;
 ;;;;;;;;;;;
