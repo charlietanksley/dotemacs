@@ -1,4 +1,5 @@
 (source melpa)
+(source gnu)
 
 (depends-on "ack-and-a-half")
 (depends-on "coffee-mode")
@@ -12,6 +13,7 @@
 (depends-on "magit")
 (depends-on "popwin")
 (depends-on "projectile")
+(depends-on "rainbow-mode")
 (depends-on "s")
 (depends-on "scss-mode")
 (depends-on "slim-mode")

@@ -150,6 +150,9 @@
     (setq projectile-completion-system 'projectile-completion-fn)
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
 
+;;; Rainbow mode (css)
+(use-package rainbow-mode)
+
 ;;; Ruby mode
 (use-package enh-ruby-mode
   :config
