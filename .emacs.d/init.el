@@ -74,6 +74,8 @@
 (setq mac-command-modifier 'meta)
 (setq mac-right-option-modifier 'super)
 
+; Shells at my fingertips
+(global-set-key (kbd "C-x m") 'eshell)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modes and packages ;;
