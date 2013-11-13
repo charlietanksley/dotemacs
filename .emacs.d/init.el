@@ -209,3 +209,16 @@
 
 ;;; Window numbering
 (use-package window-numbering)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Commands and functions ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-open-with-marked (filename)
+  (interactive)
+  (start-process "Marked" nil "/Applications/Marked.app/Contents/MacOS/Marked" filename))
+
+(defun my-open-current-file-with-marked ()
+  (interactive)
+  (my-open-with-marked (buffer-file-name)))
