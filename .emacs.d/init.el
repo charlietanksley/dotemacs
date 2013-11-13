@@ -159,14 +159,14 @@
   (progn
     (setq ruby-deep-indent-paren nil)
     (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
-  :mode (("\\.rb$" . ruby-mode)
-         ("\\.rake$" . ruby-mode)
-         ("\\.gemspec$" . ruby-mode)
-         ("\\.ru$" . ruby-mode)
-         ("Rakefile$" . ruby-mode)
-         ("Gemfile$" . ruby-mode)
-         ("Capfile$" . ruby-mode)
-         ("Guardfile$" . ruby-mode)))
+  :mode (("\\.rb$" . enh-ruby-mode)
+         ("\\.rake$" . enh-ruby-mode)
+         ("\\.gemspec$" . enh-ruby-mode)
+         ("\\.ru$" . enh-ruby-mode)
+         ("Rakefile$" . enh-ruby-mode)
+         ("Gemfile$" . enh-ruby-mode)
+         ("Capfile$" . enh-ruby-mode)
+         ("Guardfile$" . enh-ruby-mode)))
 
 ;;; Scss
 (use-package scss-mode
