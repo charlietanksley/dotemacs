@@ -155,6 +155,12 @@
     (setq projectile-completion-system 'projectile-completion-fn)
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
 
+;;; Rainbow delimiters
+(use-package rainbow-delimiters
+  :config
+  (progn
+    (global-rainbow-delimiters-mode)))
+
 ;;; Rainbow mode (css)
 (use-package rainbow-mode)
 
