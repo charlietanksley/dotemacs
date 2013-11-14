@@ -91,7 +91,16 @@
     (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)))
 
 ;;; Circe
-(use-package circe)
+(use-package circe
+  :config
+  (progn
+    (setq circe-reduce-lurker-spam t)
+    (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
+    (defun my-circe-prompt ()
+      (lui-set-prompt
+       (concat (propertize (concat (buffer-name) ">")
+                           'face 'circe-prompt-face)
+               " ")))))
 
 ;;; CoffeeScript
 (use-package coffee-mode
