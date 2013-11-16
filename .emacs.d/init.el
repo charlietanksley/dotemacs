@@ -4,6 +4,7 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+(add-to-list 'load-path "~/.emacs.d/packages")
 
 ;;; Ubiquitous packages
 (require 'use-package)
@@ -89,6 +90,12 @@
     (defalias 'ack-same 'ack-and-a-half-same)
     (defalias 'ack-find-file 'ack-and-a-half-find-file)
     (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)))
+
+;;; Chruby
+(use-package chruby
+  :config
+  (progn
+    (chruby "ruby-2.0.0-p247")))
 
 ;;; Circe
 (use-package circe
