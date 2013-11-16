@@ -150,6 +150,18 @@
 ;;; Org mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
+;;; Markdown
+(use-package markdown-mode
+  :mode (("\\.markdown$" . markdown-mode)
+         ("\\.md$" . markdown-mode)
+         ("\\.text$" . markdown-mode)))
+
+;;; Pandoc
+(use-package pandoc-mode
+  :config
+  (progn
+    (add-hook 'markdown-mode-hook 'turn-on-pandoc)))
+
 ;;; Popwin
 (use-package popwin
   :config (setq display-buffer-function 'popwin:display-buffer))

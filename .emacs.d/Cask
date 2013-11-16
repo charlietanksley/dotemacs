@@ -11,6 +11,8 @@
 (depends-on "ido-ubiquitous")
 (depends-on "js3-mode")
 (depends-on "magit")
+(depends-on "markdown-mode")
+(depends-on "pandoc-mode")
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "rainbow-delimiters")
