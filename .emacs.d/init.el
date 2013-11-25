@@ -258,3 +258,19 @@
 (defun my-open-current-file-with-marked ()
   (interactive)
   (my-open-with-marked (buffer-file-name)))
+
+;;; Clean up buffers
+(defun esk-untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun esk-indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun esk-cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (esk-indent-buffer)
+  (esk-untabify-buffer)
+  (delete-trailing-whitespace))
