@@ -250,6 +250,7 @@
 ;; Commands and functions ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Open with marked
 (defun my-open-with-marked (filename)
   (interactive)
   (start-process "Marked" nil "/Applications/Marked.app/Contents/MacOS/Marked" filename))
