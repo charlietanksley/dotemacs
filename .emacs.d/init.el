@@ -196,7 +196,8 @@
 (use-package enh-ruby-mode
   :config
   (progn
-    (setq ruby-deep-indent-paren nil)
+    (setq enh-ruby-deep-indent-paren nil)
+    (setq enh-ruby-bounce-deep-indent t)
     (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
   :mode (("\\.rb$" . enh-ruby-mode)
          ("\\.rake$" . enh-ruby-mode)
