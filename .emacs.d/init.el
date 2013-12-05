@@ -30,7 +30,9 @@
 (column-number-mode 1)
 
 ;; indicate empty lines at the end of a file
-(setq indicate-empty-lines t)
+(defun turn-on-indicate-empty-lines ()
+  (setq indicate-empty-lines t))
+(add-hook 'prog-mode-hook 'turn-on-indicate-empty-lines nil t)
 
 ;;;;;;;;;;;
 ;; Files ;;
