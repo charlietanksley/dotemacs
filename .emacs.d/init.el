@@ -280,3 +280,12 @@
   (esk-indent-buffer)
   (esk-untabify-buffer)
   (delete-trailing-whitespace))
+
+;;; Manage my emacs
+(defun open-init-file ()
+  (interactive)
+  (find-file "~/dotfiles/dotemacs/.emacs.d/init.el"))
+
+(defun open-cask-file ()
+  (interactive)
+  (find-file "~/dotfiles/dotemacs/.emacs.d/Cask"))
