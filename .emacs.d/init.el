@@ -34,6 +34,10 @@
   (setq indicate-empty-lines t))
 (add-hook 'prog-mode-hook 'turn-on-indicate-empty-lines nil t)
 
+
+;; let me narrow regions!
+(put 'narrow-to-region 'disabled nil)
+
 ;;;;;;;;;;;
 ;; Files ;;
 ;;;;;;;;;;;
