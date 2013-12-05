@@ -123,6 +123,9 @@
     (setq whitespace-action '(auto-cleanup))
     (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))))
 
+;;; Current story
+(use-package current-story)
+
 ;;; Hippie expand
 (global-set-key
  (kbd "C-.")
