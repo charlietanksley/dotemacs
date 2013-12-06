@@ -107,6 +107,15 @@
 (use-package circe
   :config
   (progn
+    (if (file-exists-p "~/.private.el")
+        (load-file "~/.private.el")
+      (setq circe-network-options
+            `(("Freenode"
+               :nick "charlietanksley"
+               :channels ("#bnr"
+                          "#bnrpython"
+                          "#emacs")
+               :nickserv-password ,freenode-password))))
     (setq circe-reduce-lurker-spam t)
     (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
     (defun my-circe-prompt ()
