@@ -173,7 +173,16 @@
             (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
 
 ;;; Org mode
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(use-package org
+  :config
+  (progn
+    (add-hook 'org-mode-hook 'turn-on-auto-fill)
+    (define-key global-map "\C-cc" 'org-capture)
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))))
 
 ;;; Markdown
 (use-package markdown-mode
