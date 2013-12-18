@@ -71,7 +71,7 @@
 (setq whitespace-style
       '(face trailing lines-tail tabs)
       whitespace-line-column 80)
-(add-hook 'prog-mode-hook 'whitespace-mode)
+(global-whitespace-mode 1)
 
 ;;;;;;;;;;
 ;; Keys ;;
