@@ -135,6 +135,9 @@
 ;;; Current story
 (use-package current-story)
 
+;;; Flycheck
+(use-package flycheck)
+
 ;;; Erlang
 (use-package erlang)
 

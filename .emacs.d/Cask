@@ -10,6 +10,7 @@
 (depends-on "erlang")
 (depends-on "enh-ruby-mode")
 (depends-on "f")
+(depends-on "flycheck")
 (depends-on "haskell-mode")
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
