@@ -233,20 +233,19 @@
 (use-package rainbow-mode)
 
 ;;; Ruby mode
-(use-package enh-ruby-mode
+(use-package ruby-mode
   :config
   (progn
-    (setq enh-ruby-deep-indent-paren nil)
-    (setq enh-ruby-bounce-deep-indent t)
-    (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
-  :mode (("\\.rb$" . enh-ruby-mode)
-         ("\\.rake$" . enh-ruby-mode)
-         ("\\.gemspec$" . enh-ruby-mode)
-         ("\\.ru$" . enh-ruby-mode)
-         ("Rakefile$" . enh-ruby-mode)
-         ("Gemfile$" . enh-ruby-mode)
-         ("Capfile$" . enh-ruby-mode)
-         ("Guardfile$" . enh-ruby-mode)))
+    (setq ruby-deep-indent-paren nil)
+    (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)))
+  :mode (("\\.rb$" . ruby-mode)
+         ("\\.rake$" . ruby-mode)
+         ("\\.gemspec$" . ruby-mode)
+         ("\\.ru$" . ruby-mode)
+         ("Rakefile$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("Capfile$" . ruby-mode)
+         ("Guardfile$" . ruby-mode)))
 
 ;;; Scss
 (use-package scss-mode
