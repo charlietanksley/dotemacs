@@ -135,6 +135,9 @@
 ;;; Current story
 (use-package current-story)
 
+;;; Erlang
+(use-package erlang)
+
 ;;; Haskell
 (use-package haskell-mode
   :config

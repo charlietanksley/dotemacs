@@ -7,6 +7,7 @@
 (depends-on "coffee-mode")
 (depends-on "current-story")
 (depends-on "dash")
+(depends-on "erlang")
 (depends-on "enh-ruby-mode")
 (depends-on "f")
 (depends-on "haskell-mode")
