@@ -9,6 +9,7 @@
 (depends-on "dash")
 (depends-on "enh-ruby-mode")
 (depends-on "f")
+(depends-on "haskell-mode")
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
 (depends-on "js3-mode")

@@ -135,6 +135,13 @@
 ;;; Current story
 (use-package current-story)
 
+;;; Haskell
+(use-package haskell-mode
+  :config
+  (progn
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)))
+
 ;;; Hippie expand
 (global-set-key
  (kbd "C-.")
