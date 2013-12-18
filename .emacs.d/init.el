@@ -8,8 +8,9 @@
 
 ;;; Ubiquitous packages
 (require 'use-package)
-(use-package f)
 (use-package dash)
+(use-package f)
+(use-package git)
 (use-package s)
 
 ;;;;;;;;;;;;;;;;;;
