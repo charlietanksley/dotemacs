@@ -4,7 +4,30 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
-(add-to-list 'load-path "~/.emacs.d/packages")
+
+;;; Install repos from git
+(setq git-install-pacakge-dir "~/.emacs.d/packages/")
+
+(defun git-install-packages (lst)
+  (mapcar 'git-install lst)
+  (mapcar 'git-install-add-to-load-path lst))
+
+(defun git-install-dir (item)
+  (let ((package-name (f-base (f-filename item))))
+    (f-join git-install-pacakge-dir (f-base (f-filename item)))))
+
+(defun git-install (item)
+  (let ((install-dir (git-install-dir item)))
+    (unless (f-exists? install-dir)
+      (git-clone item install-dir))))
+
+(defun git-install-add-to-load-path (item)
+  (let ((dir (git-install-dir item)))
+    (add-to-list 'load-path dir)))
+
+(setq git-package-list '("https://github.com/plexus/chruby.el.git"))
+
+(git-install-packages git-package-list)
 
 ;;; Ubiquitous packages
 (require 'use-package)
