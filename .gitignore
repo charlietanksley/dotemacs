@@ -1,3 +1,5 @@
 /.emacs.d/init.d/emacs-custom.el
 /.emacs.d/eshell/
 /.emacs.d/ac-comphist.dat
+.emacs.d/bookmarks
+.emacs.d/packages
