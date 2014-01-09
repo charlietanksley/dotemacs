@@ -121,6 +121,18 @@
     (defalias 'ack-find-file 'ack-and-a-half-find-file)
     (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)))
 
+;;; Auctex
+(use-package auctex
+  :config
+  (progn
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master nil)
+    (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+    (setq TeX-PDF-mode t)))
+
 ;;; Chruby
 (use-package chruby
   :config
