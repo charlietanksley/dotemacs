@@ -24,6 +24,7 @@
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")
 (depends-on "s")
+(depends-on "scala-mode2")
 (depends-on "scss-mode")
 (depends-on "slim-mode")
 (depends-on "smartparens")

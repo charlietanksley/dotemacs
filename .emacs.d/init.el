@@ -271,6 +271,9 @@
          ("Capfile$" . ruby-mode)
          ("Guardfile$" . ruby-mode)))
 
+;;; Scala-mode2
+(use-package scala-mode2)
+
 ;;; Scss
 (use-package scss-mode
   :config
