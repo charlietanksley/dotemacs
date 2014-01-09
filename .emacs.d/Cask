@@ -17,6 +17,7 @@
 (depends-on "ido")
 (depends-on "ido-ubiquitous")
 (depends-on "js3-mode")
+(depends-on "js-comint")
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "pandoc-mode")

@@ -214,6 +214,21 @@
     '(js3-indent-on-enter-key t))
   :mode (("\\.js$" . js3-mode)))
 
+(use-package js-comint
+  :config
+  (progn
+    (setq inferior-js-program-command "node --interactive")
+    ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
+    (setq inferior-js-mode-hook
+          (lambda ()
+            ;; We like nice colors
+            (ansi-color-for-comint-mode-on)
+            ;; Deal with some prompt nonsense
+            (add-to-list
+             'comint-preoutput-filter-functions
+             (lambda (output)
+               (replace-regexp-in-string "\033\\[[0-9]+[A-Z]" "" output)))))))
+
 ;;; Magit
 (use-package magit
   :bind ("C-x g" . magit-status)
