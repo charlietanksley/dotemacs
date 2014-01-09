@@ -282,6 +282,17 @@
 ;;; Slim
 (use-package slim-mode)
 
+;;; Smartparens
+(use-package smartparens
+  :config
+  (progn
+    (smartparens-global-mode t)
+    (show-smartparens-global-mode t)
+    (define-key sp-keymap (kbd "M-s") 'sp-splice-sexp)
+    (define-key sp-keymap (kbd "C-M-<right>") 'sp-forward-slurp-sexp)
+    (define-key sp-keymap (kbd "C-M-<left>") 'sp-forward-barf-sexp)
+    (sp-pair "'" nil :actions :rem)))
+
 ;;; Smex
 (use-package smex
   :init (smex-initialize)
