@@ -205,6 +205,9 @@
      ido-file-extensions-order '(".rb" ".el" ".js" ".coffee"))
     (add-to-list 'ido-ignore-files "\\.DS_Store")))
 
+;;; J
+(use-package j-mode)
+
 ;;; Javascript
 (use-package js3-mode
   :config
