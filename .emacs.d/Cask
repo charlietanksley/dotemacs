@@ -19,6 +19,7 @@
 (depends-on "j-mode")
 (depends-on "js3-mode")
 (depends-on "js-comint")
+(depends-on "jsx-mode")
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "pandoc-mode")

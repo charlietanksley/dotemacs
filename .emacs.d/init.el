@@ -232,6 +232,16 @@
              (lambda (output)
                (replace-regexp-in-string "\033\\[[0-9]+[A-Z]" "" output)))))))
 
+;;; JSX
+(use-package jsx-mode
+  :config
+  (progn
+    (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+    (custom-set-variables
+     '(jsx-indent-level 2)
+     '(jsx-use-flymake nil)))
+  :mode (("\\.jsx$\\" . jsx-mode)))
+
 ;;; Magit
 (use-package magit
   :bind ("C-x g" . magit-status)
