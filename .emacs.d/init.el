@@ -322,6 +322,9 @@
     (setq scss-compile-at-save nil))
   :mode (("\\.scss$" . scss-mode)))
 
+;;; Scheme
+(setq scheme-program-name "csi")
+
 ;;; Slim
 (use-package slim-mode)
 
