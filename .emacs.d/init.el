@@ -133,6 +133,13 @@
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
     (setq TeX-PDF-mode t)))
 
+;;; Cider
+(use-package cider
+  :config
+  (progn
+    (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+    (setq nrepl-hide-special-buffers t)))
+
 ;;; Chruby
 (use-package chruby
   :config
