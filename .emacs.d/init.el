@@ -167,6 +167,9 @@
                            'face 'circe-prompt-face)
                " ")))))
 
+;;; Clojure-mode
+(use-package clojure-mode)
+
 ;;; CoffeeScript
 (use-package coffee-mode
   :config

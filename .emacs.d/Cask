@@ -6,6 +6,7 @@
 (depends-on "auctex")
 (depends-on "cider")
 (depends-on "circe")
+(depends-on "clojure-mode")
 (depends-on "coffee-mode")
 (depends-on "current-story")
 (depends-on "dash")
