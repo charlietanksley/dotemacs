@@ -26,6 +26,7 @@
 (depends-on "lua-mode")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "nodejs-repl")
 (depends-on "pandoc-mode")
 (depends-on "popwin")
 (depends-on "projectile")

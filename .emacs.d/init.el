@@ -289,6 +289,9 @@
          ("\\.md$" . markdown-mode)
          ("\\.text$" . markdown-mode)))
 
+;;; Nodejs-repl
+(use-package nodejs-repl)
+
 ;;; Pandoc
 (use-package pandoc-mode
   :config
