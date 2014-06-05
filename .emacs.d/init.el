@@ -257,6 +257,12 @@
      '(jsx-indent-level 2)
      '(jsx-use-flymake nil)))
   :mode (("\\.jsx$\\" . jsx-mode)))
+;;; Lua
+(use-package lua-mode
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+    (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))))
 
 ;;; Magit
 (use-package magit
