@@ -187,6 +187,12 @@
 ;;; Erlang
 (use-package erlang)
 
+;;; Go
+(use-package go-mode
+  :config
+  (progn
+    (add-hook 'before-save-hook 'gofmt-before-save)))
+
 ;;; Haskell
 (use-package haskell-mode
   :config
