@@ -369,6 +369,9 @@
   :init (smex-initialize)
   :bind ("M-x" . smex))
 
+;;; Swift
+(use-package swift-mode)
+
 (use-package switch-window
   :bind ("C-x i" . switch-window))
 
