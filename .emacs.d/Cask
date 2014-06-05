@@ -8,6 +8,7 @@
 (depends-on "circe")
 (depends-on "clojure-mode")
 (depends-on "coffee-mode")
+(depends-on "company-mode")
 (depends-on "current-story")
 (depends-on "dash")
 (depends-on "erlang")
