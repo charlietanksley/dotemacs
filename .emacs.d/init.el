@@ -353,6 +353,7 @@
     (define-key sp-keymap (kbd "M-s") 'sp-splice-sexp)
     (define-key sp-keymap (kbd "C-M-<right>") 'sp-forward-slurp-sexp)
     (define-key sp-keymap (kbd "C-M-<left>") 'sp-forward-barf-sexp)
+    (setq sp-autoescape-string-quote nil)
     (sp-pair "'" nil :actions :rem)))
 
 ;;; Smex
