@@ -140,26 +140,11 @@
     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
     (setq nrepl-hide-special-buffers t)))
 
-;;; Chruby
-(use-package chruby
-  :config
-  (progn
-    (chruby "ruby-2.0.0-p247")))
-
 ;;; Circe
 (use-package circe
   :config
   (progn
-    (if (file-exists-p "~/.private.el")
-        (load-file "~/.private.el")
-      (setq circe-network-options
-            `(("Freenode"
-               :nick "charlietanksley"
-               :channels ("#bnr"
-                          "#bnrpython"
-                          "#emacs")
-               :nickserv-password ,freenode-password))))
-    (setq circe-reduce-lurker-spam t)
+   (setq circe-reduce-lurker-spam t)
     (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
     (defun my-circe-prompt ()
       (lui-set-prompt
