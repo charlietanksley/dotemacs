@@ -5,3 +5,4 @@
 .emacs.d/packages
 .emacs.d/url/
 /.emacs.d/.cask/
+/.emacs.d/auto-save-list/
