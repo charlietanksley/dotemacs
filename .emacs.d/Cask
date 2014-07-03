@@ -45,6 +45,7 @@
 (depends-on "windmove")
 (depends-on "window-numbering")
 (depends-on "yaml-mode")
+(depends-on "yard-mode")
 
 ;; Colors
 (depends-on "alect-themes")

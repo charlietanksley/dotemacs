@@ -360,6 +360,13 @@
                       '(lambda ()
                          (define-key yaml-mode-map "\C-m" newline-and-indent)))))
 
+;;; Yard (ruby)
+(use-package yard-mode
+  :config
+  (progn
+    (add-hook 'ruby-mode-hook 'yard-mode)
+    (add-hook 'ruby-mode-hook 'eldoc-mode)))
+
 ;;; Web-mode
 (use-package web-mode)
 
