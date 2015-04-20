@@ -2,7 +2,7 @@
 ;; Packages ;;
 ;;;;;;;;;;;;;;
 
-(require 'cask "/opt/boxen/homebrew/Cellar/cask/0.7.0/cask.el")
+(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
 (cask-initialize)
 
 ;;; Install repos from git
