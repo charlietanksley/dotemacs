@@ -12,6 +12,8 @@
 (depends-on "current-story")
 (depends-on "dash")
 (depends-on "erlang")
+(depends-on "ess")
+(depends-on "ess-R-data-view")
 (depends-on "f")
 (depends-on "flycheck")
 (depends-on "git")
