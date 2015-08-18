@@ -167,10 +167,17 @@
 (use-package current-story)
 
 ;;; Flycheck
-(use-package flycheck)
+(use-package flycheck
+  :config
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)))
 
 ;;; Erlang
 (use-package erlang)
+
+;;; ESS (Emacs Speaks Statistics)
+(use-package ess)
+(use-package ess-R-data-view)
 
 ;;; Go
 (use-package go-mode
@@ -289,10 +296,10 @@
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
 
 ;;; Rainbow delimiters
-(use-package rainbow-delimiters
-  :config
-  (progn
-    (global-rainbow-delimiters-mode)))
+;;(use-package rainbow-delimiters
+;;  :config
+;;  (progn
+;;    (global-rainbow-delimiters-mode)))
 
 ;;; Rainbow mode (css)
 (use-package rainbow-mode)
@@ -311,6 +318,13 @@
          ("Gemfile$" . ruby-mode)
          ("Capfile$" . ruby-mode)
          ("Guardfile$" . ruby-mode)))
+
+(use-package rust-mode
+  :config
+  (progn
+    (add-to-list 'load-path "/path/to/rust-mode/")
+    (autoload 'rust-mode "rust-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))))
 
 ;;; Scala-mode2
 (use-package scala-mode2)
@@ -363,6 +377,9 @@
   (progn
     (add-hook 'ruby-mode-hook 'yard-mode)
     (add-hook 'ruby-mode-hook 'eldoc-mode)))
+
+;;; Vagrant
+(use-package "vagrant")
 
 ;;; Web-mode
 (use-package web-mode)
