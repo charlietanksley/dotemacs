@@ -12,6 +12,7 @@
 (depends-on "current-story")
 (depends-on "dash")
 (depends-on "erlang")
+(depends-on "es-mode")
 (depends-on "ess")
 (depends-on "ess-R-data-view")
 (depends-on "f")

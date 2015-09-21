@@ -175,6 +175,12 @@
 ;;; Erlang
 (use-package erlang)
 
+;;; ElasticSearch
+(use-package es-mode
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))))
+
 ;;; ESS (Emacs Speaks Statistics)
 (use-package ess)
 (use-package ess-R-data-view)
