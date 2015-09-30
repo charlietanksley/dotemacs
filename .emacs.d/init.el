@@ -185,6 +185,12 @@
 (use-package ess)
 (use-package ess-R-data-view)
 
+;;; Make my shell work
+(use-package exec-path-from-shell
+  :config
+  (progn
+    (exec-path-from-shell-initialize)))
+
 ;;; Go
 (use-package go-mode
   :config
