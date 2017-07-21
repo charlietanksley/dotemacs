@@ -2,7 +2,7 @@
 ;; Packages ;;
 ;;;;;;;;;;;;;;
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
 (cask-initialize)
 
 ;;; Install repos from git
@@ -61,6 +61,9 @@
 
 ;; let me narrow regions!
 (put 'narrow-to-region 'disabled nil)
+
+;; newlines at end, please
+(setq require-final-newline t)
 
 ;;;;;;;;;;;
 ;; Files ;;
@@ -133,6 +136,10 @@
 ;;    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 ;;    (setq TeX-PDF-mode t)))
 
+;;; C
+(setq c-default-style "linux"
+          c-basic-offset 8)
+
 ;;; Cider
 (use-package cider
   :config
@@ -184,6 +191,23 @@
 ;;; ESS (Emacs Speaks Statistics)
 (use-package ess)
 (use-package ess-R-data-view)
+    ;; (ess-disable-smart-S-assign)))
+
+
+;;; Polymode (mostly for R markdown stuff)
+(use-package polymode
+  :init
+  (progn
+    (require 'poly-R)
+    (require 'poly-markdown)
+
+    ;;; MARKDOWN
+    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+
+    ;;; R modes
+    (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+    (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+    (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))))
 
 ;;; Make my shell work
 (use-package exec-path-from-shell
@@ -441,3 +465,4 @@
 (defun open-cask-file ()
   (interactive)
   (find-file "~/dotfiles/dotemacs/.emacs.d/Cask"))
+(put 'downcase-region 'disabled nil)

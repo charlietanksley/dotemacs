@@ -31,6 +31,7 @@
 (depends-on "magit")
 (depends-on "nodejs-repl")
 (depends-on "pandoc-mode")
+(depends-on "polymode")
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "rainbow-delimiters")
