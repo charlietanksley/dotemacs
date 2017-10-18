@@ -122,6 +122,18 @@
     (setq projectile-completion-system 'projectile-completion-fn)
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
 
+;;; Python
+(use-package anaconda-mode
+  :defer t
+  :ensure t
+  :config
+  (progn
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
+
+(use-package pyvenv
+  :ensure t)
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; Misc functions ;;;
 ;;;;;;;;;;;;;;;;;;;;;;
