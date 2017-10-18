@@ -40,6 +40,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(linum-mode 1)
 
 ;; Show me the columns
 (column-number-mode 1)
