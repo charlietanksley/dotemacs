@@ -2,39 +2,30 @@
 ;; Packages ;;
 ;;;;;;;;;;;;;;
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
-(cask-initialize)
+(require 'cl)
+(require 'package)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 
-;;; Install repos from git
-(setq git-install-pacakge-dir "~/.emacs.d/packages/")
-
-(defun git-install-packages (lst)
-  (mapcar 'git-install lst)
-  (mapcar 'git-install-add-to-load-path lst))
-
-(defun git-install-dir (item)
-  (let ((package-name (f-base (f-filename item))))
-    (f-join git-install-pacakge-dir (f-base (f-filename item)))))
-
-(defun git-install (item)
-  (let ((install-dir (git-install-dir item)))
-    (unless (f-exists? install-dir)
-      (git-clone item install-dir))))
-
-(defun git-install-add-to-load-path (item)
-  (let ((dir (git-install-dir item)))
-    (add-to-list 'load-path dir)))
-
-(setq git-package-list '("https://github.com/plexus/chruby.el.git"))
-
-(git-install-packages git-package-list)
+(package-initialize)
+(if (not (package-installed-p 'use-package))
+    (progn
+      (package-refresh-contents)
+      (package-install 'use-package)))
 
 ;;; Ubiquitous packages
-(require 'use-package)
-(use-package dash)
-(use-package f)
-(use-package git)
-(use-package s)
+(eval-when-compile
+  (require 'use-package))
+
+(use-package dash
+  :ensure t)
+(use-package f
+  :ensure t)
+(use-package git
+  :ensure t)
+(use-package s
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;
 ;; Basic config ;;
