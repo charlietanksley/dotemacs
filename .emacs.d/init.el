@@ -98,7 +98,7 @@
 
 ; Set my command keys to meta keys.
 (setq mac-command-modifier 'meta)
-(setq mac-right-option-modifier 'super)
+(setq mac-right-option-modifier 'control)
 
 ; Shells at my fingertips
 (global-set-key (kbd "C-x m") 'eshell)
