@@ -103,6 +103,25 @@
 ;;; Modes and packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Magit
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status)
+  :config (progn
+            (setq magit-remote-ref-format 'remote-slash-name)
+            (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
+
+;;; Projectile
+(use-package projectile
+  :init (projectile-global-mode 1)
+  :ensure t
+  :config
+  (progn
+    (setq projectile-enable-caching t)
+    (setq projectile-require-project-root nil)
+    (setq projectile-completion-system 'projectile-completion-fn)
+    (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; Misc functions ;;;
 ;;;;;;;;;;;;;;;;;;;;;;
