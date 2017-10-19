@@ -117,6 +117,11 @@
   :ensure t
   :config
   (progn
+    ;; This next setting is a hack from:
+    ;; https://github.com/bbatsov/projectile/issues/1183
+    (setq projectile-mode-line
+         '(:eval (format " Projectile[%s]"
+                        (projectile-project-name))))
     (setq projectile-enable-caching t)
     (setq projectile-require-project-root nil)
     (setq projectile-completion-system 'projectile-completion-fn)
