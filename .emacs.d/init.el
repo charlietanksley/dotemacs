@@ -36,7 +36,7 @@
 ;; A bell is annoying to everyone.
 (setq visible-bell 1)
 
-; Use as much screen real estate as possible for actual content.
+;; Use as much screen real estate as possible for actual content.
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -95,7 +95,7 @@
 ;; Keys ;;
 ;;;;;;;;;;
 
-; Set my command keys to meta keys.
+;; Set my command keys to meta keys.
 (setq mac-command-modifier 'meta)
 (setq mac-right-option-modifier 'control)
 
