@@ -103,7 +103,23 @@
 ;;; Modes and packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Magit
+;;; Ivy
+(use-package swiper
+  :ensure t)
+(use-package counsel
+  :ensure t)
+(use-package ivy
+  :ensure t
+  :init (ivy-mode 1)
+  :bind (("C-s" . swiper)
+	     ("M-x" . counsel-M-x)
+	     ("C-x C-f" . counsel-find-file)
+	     ("C-c C-r" . ivy-resume))
+  :config (progn
+            (setq ivy-use-virtual-buffers t)
+            (setq ivy-count-format "(%d/%d) ")))
+
+;;;; Magit
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status)
