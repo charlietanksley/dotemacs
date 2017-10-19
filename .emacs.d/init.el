@@ -131,8 +131,8 @@
 (use-package anaconda-mode
   :defer t
   :ensure t
-  :config
-  (progn
+  ;:mode (("\\.py$" . python-mode))
+  :config (progn
     (add-hook 'python-mode-hook 'anaconda-mode)
     (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
 
