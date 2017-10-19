@@ -88,7 +88,7 @@
 (require 'whitespace)
 (setq whitespace-style
       '(face trailing lines-tail tabs)
-      whitespace-line-column 80)
+      whitespace-line-column 120)
 (global-whitespace-mode 1)
 
 ;;;;;;;;;;
