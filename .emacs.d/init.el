@@ -1,46 +1,40 @@
-;;;;;;;;;;;;;;
-;; Packages ;;
-;;;;;;;;;;;;;;
+;; * Bootstrapping
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
-(cask-initialize)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;;; Install repos from git
-(setq git-install-pacakge-dir "~/.emacs.d/packages/")
+;; TODO: Need to install use-package at this point manually before any
+;; of the rest of this can work.
 
-(defun git-install-packages (lst)
-  (mapcar 'git-install lst)
-  (mapcar 'git-install-add-to-load-path lst))
-
-(defun git-install-dir (item)
-  (let ((package-name (f-base (f-filename item))))
-    (f-join git-install-pacakge-dir (f-base (f-filename item)))))
-
-(defun git-install (item)
-  (let ((install-dir (git-install-dir item)))
-    (unless (f-exists? install-dir)
-      (git-clone item install-dir))))
-
-(defun git-install-add-to-load-path (item)
-  (let ((dir (git-install-dir item)))
-    (add-to-list 'load-path dir)))
-
-(setq git-package-list '("https://github.com/plexus/chruby.el.git"))
-
-(git-install-packages git-package-list)
-
-;;; Ubiquitous packages
 (require 'use-package)
-(use-package dash)
-(use-package f)
-(use-package git)
-(use-package s)
 
-;;;;;;;;;;;;;;;;;;
-;; Basic config ;;
-;;;;;;;;;;;;;;;;;;
+;; * Semi-literate config
+;;
+;; I like the idea of a literate config because mine is always such a
+;; nightmare, but I don't want to deal with really learning orgmode
+;; right now. By using outshine I think I'll maybe get the best of
+;; both worlds?
+(use-package outshine
+  :ensure t
+  :init (progn
+          (defvar outline-minor-mode-prefix "\M-#")
+          (setq outshine-use-speed-commands t))
+  :config (progn
+            (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+            (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)))
 
-;;; Sounds, colors, and shapes (layout)
+;; In org and outshine modes, `navi` makes `j` open up a nav panel
+;; when at the start of a line.
+(use-package navi-mode
+  :ensure t)
+
+;; * Basic config
+;; ** Sounds, colors, and shapes (layout)
 
 ;; A bell is annoying to everyone.
 (setq visible-bell 1)
@@ -58,16 +52,12 @@
   (setq indicate-empty-lines t))
 (add-hook 'prog-mode-hook 'turn-on-indicate-empty-lines nil t)
 
-
-;; let me narrow regions!
-(put 'narrow-to-region 'disabled nil)
-
 ;; newlines at end, please
 (setq require-final-newline t)
 
-;;;;;;;;;;;
-;; Files ;;
-;;;;;;;;;;;
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; ** Files
 
 ;; Backups aren't super-helpful
 (setq make-backup-files nil)
@@ -79,16 +69,11 @@
 (setq custom-file "~/.emacs.d/init.d/emacs-custom.el")
 (load custom-file 'noerror)
 
+;; Makes keeping track of all those models.py a little cleaner
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'forward))
 
-;; Not quite file specific, but I mostly use these interactive commands with
-;; files, so it can go here. :)
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;;;;;;;;;;;;;;;;
-;; Characters ;;
-;;;;;;;;;;;;;;;;
+;; ** Characters
 
 ;; Tabs and spaces
 (setq-default indent-tabs-mode nil)
@@ -100,369 +85,420 @@
       whitespace-line-column 80)
 (global-whitespace-mode 1)
 
-;;;;;;;;;;
-;; Keys ;;
-;;;;;;;;;;
+;; ** Keys
 
 ; Set my command keys to meta keys.
 (setq mac-command-modifier 'meta)
 (setq mac-right-option-modifier 'super)
 
-; Shells at my fingertips
-(global-set-key (kbd "C-x m") 'eshell)
 
-;;;;;;;;;;;;;;;;;;;;;;;;
-;; Modes and packages ;;
-;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Advanced settings
+;; let me narrow regions!
+(put 'narrow-to-region 'disabled nil)
 
-;;; Ack
-(use-package ack-and-a-half
-  :config
-  (progn
-    (defalias 'ack 'ack-and-a-half)
-    (defalias 'ack-same 'ack-and-a-half-same)
-    (defalias 'ack-find-file 'ack-and-a-half-find-file)
-    (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)))
-
-;;; Auctex
-;;(use-package auctex
-;;  :config
-;;  (progn
-;;    (setq TeX-auto-save t)
-;;    (setq TeX-parse-self t)
-;;    (setq-default TeX-master nil)
-;;    (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-;;    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-;;    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-;;    (setq TeX-PDF-mode t)))
-
-;;; C
-(setq c-default-style "linux"
-          c-basic-offset 8)
-
-;;; Cider
-(use-package cider
-  :config
-  (progn
-    (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-    (setq nrepl-hide-special-buffers t)))
-
-;;; Circe
-(use-package circe
-  :config
-  (progn
-   (setq circe-reduce-lurker-spam t)
-    (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
-    (defun my-circe-prompt ()
-      (lui-set-prompt
-       (concat (propertize (concat (buffer-name) ">")
-                           'face 'circe-prompt-face)
-               " ")))))
-
-;;; Clojure-mode
-(use-package clojure-mode)
-
-;;; CoffeeScript
-(use-package coffee-mode
-  :config
-  (progn
-    (setq coffee-tab-width 2)
-    (setq whitespace-action '(auto-cleanup))
-    (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))))
-
-;;; Current story
-(use-package current-story)
-
-;;; Flycheck
-(use-package flycheck
-  :config
-  (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)))
-
-;;; Erlang
-(use-package erlang)
-
-;;; ElasticSearch
-(use-package es-mode
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))))
-
-;;; ESS (Emacs Speaks Statistics)
-(use-package ess)
-(use-package ess-R-data-view)
-    ;; (ess-disable-smart-S-assign)))
-
-
-;;; Polymode (mostly for R markdown stuff)
-(use-package polymode
-  :init
-  (progn
-    (require 'poly-R)
-    (require 'poly-markdown)
-
-    ;;; MARKDOWN
-    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
-
-    ;;; R modes
-    (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-    (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-    (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))))
-
-;;; Make my shell work
-(use-package exec-path-from-shell
-  :config
-  (progn
-    (exec-path-from-shell-initialize)))
-
-;;; Go
-(use-package go-mode
-  :config
-  (progn
-    (add-hook 'before-save-hook 'gofmt-before-save)))
-
-;;; Haskell
-(use-package haskell-mode
-  :config
-  (progn
-    (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-    (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)))
-
-;;; Hippie expand
-(global-set-key
- (kbd "C-.")
- 'hippie-expand)
-
-;;; Ido
-(use-package ido
-  :init (ido-mode 1)
-  :config
-  (progn
-    (setq
-     ido-auto-merge-work-directories-length nil
-     ido-case-fold t
-     ido-everywhere t
-     ido-enable-prefix nil
-     ido-enable-flex-matching t
-     ido-create-new-buffer 'always
-     ido-max-prospects 10
-     ido-file-extensions-order '(".rb" ".el" ".js" ".coffee"))
-    (add-to-list 'ido-ignore-files "\\.DS_Store")))
-
-;;; J
-(use-package j-mode)
-
-;;; Javascript
-(use-package js3-mode
-  :config
-  (progn
-    '(js3-auto-indent-p t)
-    '(js3-enter-indents-newline t)
-    '(js3-indent-on-enter-key t))
-  :mode (("\\.js$" . js3-mode)))
-
-(use-package js-comint
-  :config
-  (progn
-    (setq inferior-js-program-command "node --interactive")
-    ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
-    (setq inferior-js-mode-hook
-          (lambda ()
-            ;; We like nice colors
-            (ansi-color-for-comint-mode-on)
-            ;; Deal with some prompt nonsense
-            (add-to-list
-             'comint-preoutput-filter-functions
-             (lambda (output)
-               (replace-regexp-in-string "\033\\[[0-9]+[A-Z]" "" output)))))))
-
-;;; Lua
-(use-package lua-mode
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-    (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))))
-
-;;; Magit
+;; * General packages
+;; These are the packages that I'll use no matter the major mode.
+;; **  Magit
 (use-package magit
+  :ensure t
   :bind ("C-x g" . magit-status)
   :config (progn
             (setq magit-remote-ref-format 'remote-slash-name)
             (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
 
-;;; Org mode
-(use-package org
-  :config
-  (progn
-    (add-hook 'org-mode-hook 'turn-on-auto-fill)
-    (define-key global-map "\C-cc" 'org-capture)
-    (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
-             "* TODO %?\n  %i\n  %a")
-            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
-             "* %?\nEntered on %U\n  %i\n  %a")))))
+;; * Next
+;;;;;;;;;;;;;;
+;; Packages ;;
+;;;;;;;;;;;;;;
 
-;;; Markdown
-(use-package markdown-mode
-  :mode (("\\.markdown$" . markdown-mode)
-         ("\\.md$" . markdown-mode)
-         ("\\.text$" . markdown-mode)))
+;; (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+;; (cask-initialize)
 
-;;; Nodejs-repl
-(use-package nodejs-repl)
+;; ;;; Install repos from git
+;; (setq git-install-pacakge-dir "~/.emacs.d/packages/")
 
-;;; Pandoc
-(use-package pandoc-mode
-  :config
-  (progn
-    (add-hook 'markdown-mode-hook 'turn-on-pandoc)))
+;; (defun git-install-packages (lst)
+;;   (mapcar 'git-install lst)
+;;   (mapcar 'git-install-add-to-load-path lst))
 
-;;; Popwin
-(use-package popwin
-  :config (setq display-buffer-function 'popwin:display-buffer))
+;; (defun git-install-dir (item)
+;;   (let ((package-name (f-base (f-filename item))))
+;;     (f-join git-install-pacakge-dir (f-base (f-filename item)))))
 
-;;; Projectile
-(use-package projectile
-  :init (projectile-global-mode 1)
-  :config
-  (progn
-    (setq projectile-enable-caching t)
-    (setq projectile-require-project-root nil)
-    (setq projectile-completion-system 'projectile-completion-fn)
-    (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+;; (defun git-install (item)
+;;   (let ((install-dir (git-install-dir item)))
+;;     (unless (f-exists? install-dir)
+;;       (git-clone item install-dir))))
 
-;;; Rainbow delimiters
-;;(use-package rainbow-delimiters
-;;  :config
-;;  (progn
-;;    (global-rainbow-delimiters-mode)))
+;; (defun git-install-add-to-load-path (item)
+;;   (let ((dir (git-install-dir item)))
+;;     (add-to-list 'load-path dir)))
 
-;;; Rainbow mode (css)
-(use-package rainbow-mode)
+;; (setq git-package-list '("https://github.com/plexus/chruby.el.git"))
 
-;;; Ruby mode
-(use-package ruby-mode
-  :config
-  (progn
-    (setq ruby-deep-indent-paren nil)
-    (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)))
-  :mode (("\\.rb$" . ruby-mode)
-         ("\\.rake$" . ruby-mode)
-         ("\\.gemspec$" . ruby-mode)
-         ("\\.ru$" . ruby-mode)
-         ("Rakefile$" . ruby-mode)
-         ("Gemfile$" . ruby-mode)
-         ("Capfile$" . ruby-mode)
-         ("Guardfile$" . ruby-mode)))
+;; (git-install-packages git-package-list)
 
-(use-package rust-mode
-  :config
-  (progn
-    (add-to-list 'load-path "/path/to/rust-mode/")
-    (autoload 'rust-mode "rust-mode" nil t)
-    (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))))
+;; ;;; Ubiquitous packages
+p;; (use-package dash)
+;; (use-package f)
+;; (use-package git)
+;; (use-package s)
 
-;;; Scala-mode2
-(use-package scala-mode2)
+;; ; Shells at my fingertips
+;; (global-set-key (kbd "C-x m") 'eshell)
 
-;;; Scss
-(use-package scss-mode
-  :config
-  (progn
-    (setq css-indent-offset 2)
-    (setq scss-compile-at-save nil))
-  :mode (("\\.scss$" . scss-mode)))
+;; ;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; Modes and packages ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Scheme
-(setq scheme-program-name "csi")
+;; ;;; Ack
+;; (use-package ack-and-a-half
+;;   :config
+;;   (progn
+;;     (defalias 'ack 'ack-and-a-half)
+;;     (defalias 'ack-same 'ack-and-a-half-same)
+;;     (defalias 'ack-find-file 'ack-and-a-half-find-file)
+;;     (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)))
 
-;;; Slim
-(use-package slim-mode)
+;; ;;; Auctex
+;; ;;(use-package auctex
+;; ;;  :config
+;; ;;  (progn
+;; ;;    (setq TeX-auto-save t)
+;; ;;    (setq TeX-parse-self t)
+;; ;;    (setq-default TeX-master nil)
+;; ;;    (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+;; ;;    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;; ;;    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; ;;    (setq TeX-PDF-mode t)))
 
-;;; Smartparens
-(use-package smartparens
-  :config
-  (progn
-    (smartparens-global-mode t)
-    (show-smartparens-global-mode t)
-    (define-key sp-keymap (kbd "M-s") 'sp-splice-sexp)
-    (define-key sp-keymap (kbd "C-M-<right>") 'sp-forward-slurp-sexp)
-    (define-key sp-keymap (kbd "C-M-<left>") 'sp-forward-barf-sexp)
-    (setq sp-autoescape-string-quote nil)
-    (sp-pair "'" nil :actions :rem)))
+;; ;;; C
+;; (setq c-default-style "linux"
+;;           c-basic-offset 8)
 
-;;; Smex
-(use-package smex
-  :init (smex-initialize)
-  :bind ("M-x" . smex))
+;; ;;; Cider
+;; (use-package cider
+;;   :config
+;;   (progn
+;;     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;;     (setq nrepl-hide-special-buffers t)))
 
-(use-package switch-window
-  :bind ("C-x i" . switch-window))
+;; ;;; Circe
+;; (use-package circe
+;;   :config
+;;   (progn
+;;    (setq circe-reduce-lurker-spam t)
+;;     (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
+;;     (defun my-circe-prompt ()
+;;       (lui-set-prompt
+;;        (concat (propertize (concat (buffer-name) ">")
+;;                            'face 'circe-prompt-face)
+;;                " ")))))
 
-;;; YAML
-(use-package yaml-mode
-  :config (progn
-            (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-            (add-hook 'yaml-mode-hook
-                      '(lambda ()
-                         (define-key yaml-mode-map "\C-m" newline-and-indent)))))
+;; ;;; Clojure-mode
+;; (use-package clojure-mode)
 
-;;; Yard (ruby)
-(use-package yard-mode
-  :config
-  (progn
-    (add-hook 'ruby-mode-hook 'yard-mode)
-    (add-hook 'ruby-mode-hook 'eldoc-mode)))
+;; ;;; CoffeeScript
+;; (use-package coffee-mode
+;;   :config
+;;   (progn
+;;     (setq coffee-tab-width 2)
+;;     (setq whitespace-action '(auto-cleanup))
+;;     (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))))
 
-;;; Vagrant
-(use-package "vagrant")
+;; ;;; Current story
+;; (use-package current-story)
 
-;;; Web-mode
-(use-package web-mode)
+;; ;;; Flycheck
+;; (use-package flycheck
+;;   :config
+;;   (progn
+;;     (add-hook 'after-init-hook #'global-flycheck-mode)))
 
-;;; Windmove
-(use-package windmove
-  :config (windmove-default-keybindings 'shift))
+;; ;;; Erlang
+;; (use-package erlang)
 
-;;; Window numbering
-(use-package window-numbering)
+;; ;;; ElasticSearch
+;; (use-package es-mode
+;;   :config
+;;   (progn
+;;     (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))))
+
+;; ;;; ESS (Emacs Speaks Statistics)
+;; (use-package ess)
+;; (use-package ess-R-data-view)
+;;     ;; (ess-disable-smart-S-assign)))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Commands and functions ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;; Polymode (mostly for R markdown stuff)
+;; (use-package polymode
+;;   :init
+;;   (progn
+;;     (require 'poly-R)
+;;     (require 'poly-markdown)
 
-;;; Open with marked
-(defun my-open-with-marked (filename)
-  (interactive)
-  (start-process "Marked" nil "/Applications/Marked.app/Contents/MacOS/Marked" filename))
+;;     ;;; MARKDOWN
+;;     (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
 
-(defun my-open-current-file-with-marked ()
-  (interactive)
-  (my-open-with-marked (buffer-file-name)))
+;;     ;;; R modes
+;;     (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+;;     (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+;;     (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))))
 
-;;; Clean up buffers
-(defun esk-untabify-buffer ()
-  (interactive)
-  (untabify (point-min) (point-max)))
+;; ;;; Make my shell work
+;; (use-package exec-path-from-shell
+;;   :config
+;;   (progn
+;;     (exec-path-from-shell-initialize)))
 
-(defun esk-indent-buffer ()
-  (interactive)
-  (indent-region (point-min) (point-max)))
+;; ;;; Go
+;; (use-package go-mode
+;;   :config
+;;   (progn
+;;     (add-hook 'before-save-hook 'gofmt-before-save)))
 
-(defun esk-cleanup-buffer ()
-  "Perform a bunch of operations on the whitespace content of a buffer."
-  (interactive)
-  (esk-indent-buffer)
-  (esk-untabify-buffer)
-  (delete-trailing-whitespace))
+;; ;;; Haskell
+;; (use-package haskell-mode
+;;   :config
+;;   (progn
+;;     (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;     (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)))
 
-;;; Manage my emacs
-(defun open-init-file ()
-  (interactive)
-  (find-file "~/dotfiles/dotemacs/.emacs.d/init.el"))
+;; ;;; Hippie expand
+;; (global-set-key
+;;  (kbd "C-.")
+;;  'hippie-expand)
 
-(defun open-cask-file ()
-  (interactive)
-  (find-file "~/dotfiles/dotemacs/.emacs.d/Cask"))
-(put 'downcase-region 'disabled nil)
+;; ;;; Ido
+;; (use-package ido
+;;   :init (ido-mode 1)
+;;   :config
+;;   (progn
+;;     (setq
+;;      ido-auto-merge-work-directories-length nil
+;;      ido-case-fold t
+;;      ido-everywhere t
+;;      ido-enable-prefix nil
+;;      ido-enable-flex-matching t
+;;      ido-create-new-buffer 'always
+;;      ido-max-prospects 10
+;;      ido-file-extensions-order '(".rb" ".el" ".js" ".coffee"))
+;;     (add-to-list 'ido-ignore-files "\\.DS_Store")))
+
+;; ;;; J
+;; (use-package j-mode)
+
+;; ;;; Javascript
+;; (use-package js3-mode
+;;   :config
+;;   (progn
+;;     '(js3-auto-indent-p t)
+;;     '(js3-enter-indents-newline t)
+;;     '(js3-indent-on-enter-key t))
+;;   :mode (("\\.js$" . js3-mode)))
+
+;; (use-package js-comint
+;;   :config
+;;   (progn
+;;     (setq inferior-js-program-command "node --interactive")
+;;     ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
+;;     (setq inferior-js-mode-hook
+;;           (lambda ()
+;;             ;; We like nice colors
+;;             (ansi-color-for-comint-mode-on)
+;;             ;; Deal with some prompt nonsense
+;;             (add-to-list
+;;              'comint-preoutput-filter-functions
+;;              (lambda (output)
+;;                (replace-regexp-in-string "\033\\[[0-9]+[A-Z]" "" output)))))))
+
+;; ;;; Lua
+;; (use-package lua-mode
+;;   :config
+;;   (progn
+;;     (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+;;     (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))))
+
+;; ;;; Magit
+;; (use-package magit
+;;   :bind ("C-x g" . magit-status)
+;;   :config (progn
+;;             (setq magit-remote-ref-format 'remote-slash-name)
+;;             (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
+
+;; ;;; Org mode
+;; (use-package org
+;;   :config
+;;   (progn
+;;     (add-hook 'org-mode-hook 'turn-on-auto-fill)
+;;     (define-key global-map "\C-cc" 'org-capture)
+;;     (setq org-capture-templates
+;;           '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+;;              "* TODO %?\n  %i\n  %a")
+;;             ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+;;              "* %?\nEntered on %U\n  %i\n  %a")))))
+
+;; ;;; Markdown
+;; (use-package markdown-mode
+;;   :mode (("\\.markdown$" . markdown-mode)
+;;          ("\\.md$" . markdown-mode)
+;;          ("\\.text$" . markdown-mode)))
+
+;; ;;; Nodejs-repl
+;; (use-package nodejs-repl)
+
+;; ;;; Pandoc
+;; (use-package pandoc-mode
+;;   :config
+;;   (progn
+;;     (add-hook 'markdown-mode-hook 'turn-on-pandoc)))
+
+;; ;;; Popwin
+;; (use-package popwin
+;;   :config (setq display-buffer-function 'popwin:display-buffer))
+
+;; ;;; Projectile
+;; (use-package projectile
+;;   :init (projectile-global-mode 1)
+;;   :config
+;;   (progn
+;;     (setq projectile-enable-caching t)
+;;     (setq projectile-require-project-root nil)
+;;     (setq projectile-completion-system 'projectile-completion-fn)
+;;     (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+
+;; ;;; Rainbow delimiters
+;; ;;(use-package rainbow-delimiters
+;; ;;  :config
+;; ;;  (progn
+;; ;;    (global-rainbow-delimiters-mode)))
+
+;; ;;; Rainbow mode (css)
+;; (use-package rainbow-mode)
+
+;; ;;; Ruby mode
+;; (use-package ruby-mode
+;;   :config
+;;   (progn
+;;     (setq ruby-deep-indent-paren nil)
+;;     (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)))
+;;   :mode (("\\.rb$" . ruby-mode)
+;;          ("\\.rake$" . ruby-mode)
+;;          ("\\.gemspec$" . ruby-mode)
+;;          ("\\.ru$" . ruby-mode)
+;;          ("Rakefile$" . ruby-mode)
+;;          ("Gemfile$" . ruby-mode)
+;;          ("Capfile$" . ruby-mode)
+;;          ("Guardfile$" . ruby-mode)))
+
+;; (use-package rust-mode
+;;   :config
+;;   (progn
+;;     (add-to-list 'load-path "/path/to/rust-mode/")
+;;     (autoload 'rust-mode "rust-mode" nil t)
+;;     (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))))
+
+;; ;;; Scala-mode2
+;; (use-package scala-mode2)
+
+;; ;;; Scss
+;; (use-package scss-mode
+;;   :config
+;;   (progn
+;;     (setq css-indent-offset 2)
+;;     (setq scss-compile-at-save nil))
+;;   :mode (("\\.scss$" . scss-mode)))
+
+;; ;;; Scheme
+;; (setq scheme-program-name "csi")
+
+;; ;;; Slim
+;; (use-package slim-mode)
+
+;; ;;; Smartparens
+;; (use-package smartparens
+;;   :config
+;;   (progn
+;;     (smartparens-global-mode t)
+;;     (show-smartparens-global-mode t)
+;;     (define-key sp-keymap (kbd "M-s") 'sp-splice-sexp)
+;;     (define-key sp-keymap (kbd "C-M-<right>") 'sp-forward-slurp-sexp)
+;;     (define-key sp-keymap (kbd "C-M-<left>") 'sp-forward-barf-sexp)
+;;     (setq sp-autoescape-string-quote nil)
+;;     (sp-pair "'" nil :actions :rem)))
+
+;; ;;; Smex
+;; (use-package smex
+;;   :init (smex-initialize)
+;;   :bind ("M-x" . smex))
+
+;; (use-package switch-window
+;;   :bind ("C-x i" . switch-window))
+
+;; ;;; YAML
+;; (use-package yaml-mode
+;;   :config (progn
+;;             (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+;;             (add-hook 'yaml-mode-hook
+;;                       '(lambda ()
+;;                          (define-key yaml-mode-map "\C-m" newline-and-indent)))))
+
+;; ;;; Yard (ruby)
+;; (use-package yard-mode
+;;   :config
+;;   (progn
+;;     (add-hook 'ruby-mode-hook 'yard-mode)
+;;     (add-hook 'ruby-mode-hook 'eldoc-mode)))
+
+;; ;;; Vagrant
+;; (use-package "vagrant")
+
+;; ;;; Web-mode
+;; (use-package web-mode)
+
+;; ;;; Windmove
+;; (use-package windmove
+;;   :config (windmove-default-keybindings 'shift))
+
+;; ;;; Window numbering
+;; (use-package window-numbering)
+
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; Commands and functions ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ;;; Open with marked
+;; (defun my-open-with-marked (filename)
+;;   (interactive)
+;;   (start-process "Marked" nil "/Applications/Marked.app/Contents/MacOS/Marked" filename))
+
+;; (defun my-open-current-file-with-marked ()
+;;   (interactive)
+;;   (my-open-with-marked (buffer-file-name)))
+
+;; ;;; Clean up buffers
+;; (defun esk-untabify-buffer ()
+;;   (interactive)
+;;   (untabify (point-min) (point-max)))
+
+;; (defun esk-indent-buffer ()
+;;   (interactive)
+;;   (indent-region (point-min) (point-max)))
+
+;; (defun esk-cleanup-buffer ()
+;;   "Perform a bunch of operations on the whitespace content of a buffer."
+;;   (interactive)
+;;   (esk-indent-buffer)
+;;   (esk-untabify-buffer)
+;;   (delete-trailing-whitespace))
+
+;; ;;; Manage my emacs
+;; (defun open-init-file ()
+;;   (interactive)
+;;   (find-file "~/dotfiles/dotemacs/.emacs.d/init.el"))
+
+;; (defun open-cask-file ()
+;;   (interactive)
+;;   (find-file "~/dotfiles/dotemacs/.emacs.d/Cask"))
+;; (put 'downcase-region 'disabled nil)

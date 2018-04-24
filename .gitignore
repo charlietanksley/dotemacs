@@ -6,3 +6,6 @@
 .emacs.d/url/
 /.emacs.d/.cask/
 /.emacs.d/auto-save-list/
+/.emacs.d/network-security.data
+*~
+elpa/
