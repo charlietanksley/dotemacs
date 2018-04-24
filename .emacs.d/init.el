@@ -162,6 +162,15 @@
 (use-package ag
   :ensure t)
 
+;; * Language specific packages
+
+;; ** Lua
+(use-package lua-mode
+  :ensure t
+  :config (progn
+            (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
+  :mode (("\\.lua$" . lua-mode)))
+
 ;; * Old configs
 ;;;;;;;;;;;;;;
 ;; Packages ;;
