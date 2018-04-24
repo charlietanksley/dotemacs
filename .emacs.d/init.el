@@ -116,6 +116,48 @@
             (setq magit-remote-ref-format 'remote-slash-name)
             (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
 
+;; ** Smex
+
+;; This is only barely configured because it'll actually be used by
+;; Council below
+(use-package smex
+  :ensure t)
+
+;; ** Ivy
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :config
+  (progn
+    (ivy-mode t)
+    (setq ivy-initial-inputs-alist nil)))
+
+;; ** Counsel
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)))
+
+;; ** Swiper
+(use-package swiper
+    :ensure t
+    :bind (("C-s" . swiper)))
+
+
+;; ** Projectile
+(use-package projectile
+  :ensure t
+  :init (projectile-global-mode 1)
+  :config
+  (progn
+    (setq projectile-enable-caching t)
+    (setq projectile-require-project-root nil)
+    (setq projectile-completion-system 'ivy)
+    (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+(use-package counsel-projectile
+    :ensure t
+    :config
+    (add-hook 'after-init-hook 'counsel-projectile-mode))
+
 ;; * Next
 ;;;;;;;;;;;;;;
 ;; Packages ;;
@@ -437,10 +479,6 @@ p;; (use-package dash)
 ;;     (setq sp-autoescape-string-quote nil)
 ;;     (sp-pair "'" nil :actions :rem)))
 
-;; ;;; Smex
-;; (use-package smex
-;;   :init (smex-initialize)
-;;   :bind ("M-x" . smex))
 
 ;; (use-package switch-window
 ;;   :bind ("C-x i" . switch-window))
@@ -512,3 +550,54 @@ p;; (use-package dash)
 ;;   (interactive)
 ;;   (find-file "~/dotfiles/dotemacs/.emacs.d/Cask"))
 ;; (put 'downcase-region 'disabled nil)
+
+;; * Experimental packages
+;; Ppackages I want to try but I'm not confident I'll actually stick with
+
+;; ** Ivy-hydra
+
+;; So I *think* that ivy itself installs hydra and then this makes
+;; hydra have a slightly different look/feel/function? See
+;; https://github.com/abo-abo/hydra for more.
+(use-package ivy-hydra
+  :ensure t)
+
+;; ** Which-key
+
+;; https://github.com/justbur/emacs-which-key
+;; I'm not certain this one is useful. I should explore it some.
+(use-package which-key
+  :ensure t
+  :diminish which-key-mode
+  :config
+  (add-hook 'after-init-hook 'which-key-mode))
+
+
+
+
+;; ** Expand Region
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
+;; ** Focus
+
+;; Turn off highlighting for everythign but the region under the cursor?
+(use-package focus
+    :ensure t)
+
+;; ** Time machine
+
+;; Move through versions of a file
+(use-package git-timemachine
+  :ensure t)
+
+;; ** Dumb jump
+
+;; Apparently this is a decent tag alternative?
+(use-package dumb-jump
+    :ensure t
+    :diminish dumb-jump-mode
+    :bind (("C-M-g" . dumb-jump-go)
+           ("C-M-p" . dumb-jump-back)
+           ("C-M-q" . dumb-jump-quick-look)))
