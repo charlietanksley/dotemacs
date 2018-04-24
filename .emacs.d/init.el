@@ -8,8 +8,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;; TODO: Need to install use-package at this point manually before any
-;; of the rest of this can work.
+;; https://jamiecollinson.com/blog/my-emacs-config/#bootstrap-use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (require 'use-package)
 
