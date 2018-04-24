@@ -158,7 +158,11 @@
     :config
     (add-hook 'after-init-hook 'counsel-projectile-mode))
 
-;; * Next
+;; ** Ag
+(use-package ag
+  :ensure t)
+
+;; * Old configs
 ;;;;;;;;;;;;;;
 ;; Packages ;;
 ;;;;;;;;;;;;;;
