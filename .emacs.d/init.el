@@ -556,7 +556,7 @@ p;; (use-package dash)
 ;; (put 'downcase-region 'disabled nil)
 
 ;; * Experimental packages
-;; Ppackages I want to try but I'm not confident I'll actually stick with
+;; Packages I want to try but I'm not confident I'll actually stick with
 
 ;; ** Ivy-hydra
 
