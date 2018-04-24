@@ -9,3 +9,4 @@
 /.emacs.d/network-security.data
 *~
 elpa/
+*/anaconda-mode/

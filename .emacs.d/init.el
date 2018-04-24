@@ -163,7 +163,6 @@
   :ensure t)
 
 ;; * Language specific packages
-
 ;; ** Lua
 (use-package lua-mode
   :ensure t
@@ -171,6 +170,15 @@
             (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
   :mode (("\\.lua$" . lua-mode)))
 
+
+;; ** Python
+(use-package anaconda-mode
+  :ensure t
+  :config (progn
+            (add-hook 'python-mode-hook 'anaconda-mode)
+            (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
+(use-package py-autopep8
+  :ensure t)
 ;; * Old configs
 ;;;;;;;;;;;;;;
 ;; Packages ;;
