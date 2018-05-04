@@ -162,6 +162,11 @@
 (use-package ag
   :ensure t)
 
+;; ** Exec path from shell
+(use-package exec-path-from-shell
+  :ensure t
+  :init (progn
+          (exec-path-from-shell-initialize)))
 ;; * Language specific packages
 ;; ** Lua
 (use-package lua-mode
