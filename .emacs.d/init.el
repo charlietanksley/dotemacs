@@ -167,6 +167,11 @@
   :ensure t
   :init (progn
           (exec-path-from-shell-initialize)))
+;; ** Editorconfig
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 ;; * Language specific packages
 ;; ** Lua
 (use-package lua-mode
