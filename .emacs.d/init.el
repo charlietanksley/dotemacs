@@ -212,7 +212,7 @@
 ;; (git-install-packages git-package-list)
 
 ;; ;;; Ubiquitous packages
-p;; (use-package dash)
+;; (use-package dash)
 ;; (use-package f)
 ;; (use-package git)
 ;; (use-package s)
