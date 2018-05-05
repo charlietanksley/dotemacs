@@ -124,13 +124,16 @@
   :ensure t)
 
 ;; ** Ivy
+;; Steals a few settings from https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
 (use-package ivy
   :ensure t
   :diminish ivy-mode
   :config
   (progn
     (ivy-mode t)
-    (setq ivy-initial-inputs-alist nil)))
+    (setq ivy-initial-inputs-alist nil
+          ivy-use-virtual-buffers t
+          ivy-count-format "%d/%d ")))
 
 ;; ** Counsel
 (use-package counsel
