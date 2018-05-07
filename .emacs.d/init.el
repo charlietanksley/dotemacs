@@ -635,3 +635,9 @@
     :bind (("C-c n d g" . dumb-jump-go)
            ("C-c n d b" . dumb-jump-back)
            ("C-c n d q" . dumb-jump-quick-look)))
+
+;; ** Counsel-dash
+(use-package counsel-dash
+  :ensure t
+  :config (progn
+            (setq helm-dash-browser-func 'eww)))
