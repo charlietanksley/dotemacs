@@ -632,6 +632,6 @@
 (use-package dumb-jump
     :ensure t
     :diminish dumb-jump-mode
-    :bind (("C-M-g" . dumb-jump-go)
-           ("C-M-p" . dumb-jump-back)
-           ("C-M-q" . dumb-jump-quick-look)))
+    :bind (("C-c n d g" . dumb-jump-go)
+           ("C-c n d b" . dumb-jump-back)
+           ("C-c n d q" . dumb-jump-quick-look)))
