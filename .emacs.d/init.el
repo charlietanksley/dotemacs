@@ -659,3 +659,9 @@
   :bind (("C-c n d d" . counsel-dash))
   :config (progn
             (setq helm-dash-browser-func 'eww)))
+
+;; * Org
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+(setq org-use-speed-commands t)
