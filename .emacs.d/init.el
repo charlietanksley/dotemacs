@@ -656,5 +656,6 @@
 ;; ** Counsel-dash
 (use-package counsel-dash
   :ensure t
+  :bind (("C-c n d d" . counsel-dash))
   :config (progn
             (setq helm-dash-browser-func 'eww)))
