@@ -185,13 +185,30 @@
 
 
 ;; ** Python
+
+;; Hrm. So it is unclear to me what exactly this brings to the table. :/
 (use-package anaconda-mode
   :ensure t
   :config (progn
             (add-hook 'python-mode-hook 'anaconda-mode)
             (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
+
 (use-package py-autopep8
   :ensure t)
+
+;; The bit about installing jedi correctly from here worked for me, I
+;; think. Note that I *did not* do the complicated copying files over
+;; part:
+;; https://github.com/tkf/emacs-jedi/issues/293#issuecomment-361843980
+(use-package jedi
+  :ensure t
+  :config (progn
+            (add-hook 'python-mode-hook 'jedi:setup)
+            (setq jedi:complete-on-dot t)))
+
+;; I tried using https://github.com/tkf/emacs-jedi-direx becuase I
+;; really like the idea but it is broken. :/
+
 ;; * Old configs
 ;;;;;;;;;;;;;;
 ;; Packages ;;
