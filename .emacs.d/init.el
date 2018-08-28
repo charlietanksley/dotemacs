@@ -663,5 +663,44 @@
 ;; * Org
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((python . t)))
+ '((python . t)
+   (ditaa . t)
+   (gnuplot . t)))
+
+(setq org-ditaa-jar-path "/usr/local/bin/ditaa")
+(setq org-babel-ditaa-java-cmd " ")
+(setq org-babel-default-header-args:ditaa
+      '((:results . "file")
+        (:exports . "results")
+        (:java . " ")))
+(setq org-ditaa-jar-option " ")
+
+;; (use-package gnuplot
+;;   :ensure t)
 (setq org-use-speed-commands t)
+(setq org-log-done 'time)
+(setq org-agenda-files '("/Users/charlietanksley/org"))
+
+(setq org-todo-keywords
+      '((sequence "TODO" "|" "DONE" "CANCELED")))
+
+(setq org-capture-templates
+      '(("r" "Retrospective" entry (file+olp "~/org/retrospectives.org" "Retrospectives" "2018 Q3")
+         "*** <%(org-read-date nil nil \"-Mon\")> - <%(org-read-date nil nil \"-Fri\")>
+**** OKR Status
+***** Reduce time spent solving algorithmic challenges by 50\%
+%?
+***** Reduce mistakes in work programming by 90\%
+***** Increase (2 sprint average) velocity by 300\%
+**** Health Metrics
+***** Stress:
+***** Time management:
+**** Last week
+**** This week
+*** Resume Notes")))
+
+(global-set-key "\C-ca" 'org-agenda)
+
+(provide 'init)
+;;; init.el ends here
+
