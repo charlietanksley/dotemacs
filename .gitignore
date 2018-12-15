@@ -11,3 +11,7 @@
 elpa/
 */anaconda-mode/
 /.emacs.d/smex-items
+/.emacs.d/.last-package-update-day
+/.emacs.d/.org-id-locations
+/.emacs.d/.python-environments/
+/.emacs.d/recentf

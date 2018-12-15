@@ -1,4 +1,10 @@
 ;; * Bootstrapping
+;;
+;; Commands:
+;;   * org-global-cycle - to close everything
+;;   * f/b - like p/n but moves at same level
+;;
+;;
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -7,6 +13,8 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; https://jamiecollinson.com/blog/my-emacs-config/#bootstrap-use-package
 (unless (package-installed-p 'use-package)
@@ -59,6 +67,8 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq global-linum-mode 1)
+
 ;; ** Files
 
 ;; I hate the way my backups work. Let's try someone else's in the
@@ -92,7 +102,7 @@
 (require 'whitespace)
 (setq whitespace-style
       '(face trailing lines-tail tabs)
-      whitespace-line-column 80)
+      whitespace-line-column 120)
 (global-whitespace-mode 1)
 
 ;; ** Keys
@@ -142,24 +152,28 @@
 
 ;; ** Swiper
 (use-package swiper
-    :ensure t
-    :bind (("C-s" . swiper)))
+  :ensure t
+  :bind (("C-s" . swiper)))
 
 
 ;; ** Projectile
 (use-package projectile
   :ensure t
-  :init (projectile-global-mode 1)
-  :config
-  (progn
-    (setq projectile-enable-caching t)
-    (setq projectile-require-project-root nil)
-    (setq projectile-completion-system 'ivy)
-    (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
-(use-package counsel-projectile
-    :ensure t
-    :config
-    (add-hook 'after-init-hook 'counsel-projectile-mode))
+  :init(progn
+         (projectile-mode +1))
+  :bind (("C-c p" . projectile-command-map))
+  :config (progn
+            (setq projectile-enable-caching t
+                  projectile-require-project-root nil
+                  projectile-completion-system 'ivy)
+            (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+
+;; This is broken right now so just ignore it.
+;; (use-package counsel-projectile
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (add-hook 'after-init-hook 'counsel-projectile-mode)))
 
 ;; ** Ag
 (use-package ag
@@ -208,6 +222,28 @@
 
 ;; I tried using https://github.com/tkf/emacs-jedi-direx becuase I
 ;; really like the idea but it is broken. :/
+
+;; ** Rust
+(use-package rust-mode
+  :ensure t
+  :config (progn
+            (setq rust-format-on-save t))
+  :mode (("\\.rs$" . rust-mode)))
+
+;; ** Haskell
+(use-package haskell-mode
+  :ensure t
+  :config
+  (progn
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
+  :mode (("\\.hs$" . haskell-mode)))
+
+;; ** YAML
+(use-package yaml-mode
+  :ensure t
+  :mode (("\\.yml\\'" . yaml-mode)
+         ("\\.yaml\\'" . yaml-mode)))
 
 ;; * Old configs
 ;;;;;;;;;;;;;;
@@ -656,16 +692,136 @@
 ;; ** Counsel-dash
 (use-package counsel-dash
   :ensure t
-  :bind (("C-c n d d" . counsel-dash))
+  :bind (("C-c n d d" . counsel-dash)
+         ("C-c n d a" . counsel-dash-activate-docset))
   :config (progn
             (setq helm-dash-browser-func 'eww)))
+
+;; ** Deadgrep
+(use-package deadgrep
+  :ensure t
+  :bind (("C-c n s r" . deadgrep)))
+
+;; Keep packages up to date
+;; (use-package auto-package-update
+;;   :ensure t
+;;   :config
+;;   (setq auto-package-update-delete-old-versions t)
+;;   (setq auto-package-update-hide-results t)
+;;   (auto-package-update-maybe))
+
+;; ** Avy
+(use-package avy
+  :ensure t
+  :bind (("C-c j c" . avy-goto-char-2)
+         ("C-c j w" . avy-goto-char-timer)
+         ("C-c j l" . avy-goto-line)))
+
+;; ** Lispy
+;; https://github.com/abo-abo/lispy#list-commands-overview
+;; This seems cool but maybe conflicts with outshine?
+(use-package lispy
+  :ensure t
+  :config
+  (progn (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))))
+
+;; ** Ipy
+;; https://github.com/abo-abo/lpy
+;; Does't seem to be in melpa yet
+;; (use-package lpy
+;;   :ensure t)
+
+;; ** Ace-window
+(use-package ace-window
+  :ensure t
+  :bind (("M-o" . ace-window))
+  :config
+  (progn (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))))
+
+;; ** Dimmer
+(use-package dimmer
+  :ensure t
+  :config
+  (progn (dimmer-mode)
+         (setq dimmer-fraction 0.25)))
+
+;; ** Rainbow delimiters
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (progn
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)))
+
+;; ** Flycheck
+(use-package flycheck
+  :ensure t
+  :config
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)))
+
+;; ** Web-mode
+(use-package web-mode
+  :ensure t
+  :config
+  (progn
+    (setq web-mode-content-types-alist
+          '(("jsx"  . "/Users/charlietanksley/git/monetate-server//ui/js/.*/.\\.js[x]?\\'")))))
+
+;; ** Smartparens
+(use-package smartparens
+  :ensure t
+  :config
+  (progn
+    (add-hook 'js-mode-hook #'smartparens-mode)
+    (add-hook 'web-mode-hook #'smartparens-mode)
+    (add-hook 'python-mode-hook #'smartparens-mode)))
+
+;; ** rjsx-mode
+(use-package rjsx-mode
+  :ensure t)
+
+;; ** markdown
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+;; ** Haskell
+(use-package intero
+  :ensure t
+  :config
+  (progn
+    (add-hook 'haskell-mode-hook 'intero-mode)))
+
+;; ** Elixir
+(use-package elixir-mode
+  :ensure t
+  :config
+  (progn
+    (add-hook 'elixir-mode-hook
+              (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))))
+
+(use-package alchemist
+  :ensure t
+  :config
+  (progn
+    (add-hook 'elixir-mode-hook 'alchemist-mode)))
+
+;; ** Indent tools
+(use-package indent-tools
+  :ensure t
+  :bind (("C-c >" . indent-tools-hydra/body)))
 
 ;; * Org
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
+   (C . t)
    (ditaa . t)
-   (gnuplot . t)))
+   (gnuplot . t)
+   (latex . t)))
 
 (setq org-ditaa-jar-path "/usr/local/bin/ditaa")
 (setq org-babel-ditaa-java-cmd " ")
@@ -674,6 +830,17 @@
         (:exports . "results")
         (:java . " ")))
 (setq org-ditaa-jar-option " ")
+
+
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings 'minted)
+
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
 
 ;; (use-package gnuplot
 ;;   :ensure t)
@@ -696,11 +863,29 @@
 ***** Stress:
 ***** Time management:
 **** Last week
-**** This week
-*** Resume Notes")))
+**** This week")
+        ("p" "PR" entry (file "~/org/prs.org")
+         "* TODO %? [0/13]
+:PROPERTIES:
+:ORDERED:  t
+:END:
+  - [ ] Claim
+  - [ ] Write PR description
+  - [ ] Understand the problem
+  - [ ] Write tests
+  - [ ] Write the code
+  - [ ] Document UAT test script
+  - [ ] Documentation
+  - [ ] Clean commits
+  - [ ] Request review
+  - [ ] Respond to review
+  - [ ] Clean commits
+  - [ ] Merge
+  - [ ] Update changelog")))
 
 (global-set-key "\C-ca" 'org-agenda)
 
 (provide 'init)
 ;;; init.el ends here
+
 
