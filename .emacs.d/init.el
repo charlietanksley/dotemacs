@@ -814,6 +814,28 @@
   :ensure t
   :bind (("C-c >" . indent-tools-hydra/body)))
 
+
+;; ** Arduino
+(use-package arduino-mode
+  :ensure t)
+
+(use-package company-arduino
+  :ensure t
+  :config
+  (progn
+    (add-hook 'irony-mode-hook 'company-arduino-turn-on)
+    (add-hook 'arduino-mode-hook 'irony-mode)))
+
+;; ** Irony (C/C++)
+(use-package irony
+  :ensure t
+  :config
+  (progn
+    (add-hook 'c++-mode-hook 'irony-mode)
+    (add-hook 'c-mode-hook 'irony-mode)
+    (add-hook 'objc-mode-hook 'irony-mode)
+    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
+
 ;; * Org
 (org-babel-do-load-languages
  'org-babel-load-languages
