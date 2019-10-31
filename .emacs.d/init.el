@@ -15,6 +15,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/"))
 
 ;; https://jamiecollinson.com/blog/my-emacs-config/#bootstrap-use-package
 (unless (package-installed-p 'use-package)
@@ -214,14 +216,42 @@
 ;; think. Note that I *did not* do the complicated copying files over
 ;; part:
 ;; https://github.com/tkf/emacs-jedi/issues/293#issuecomment-361843980
-(use-package jedi
-  :ensure t
-  :config (progn
-            (add-hook 'python-mode-hook 'jedi:setup)
-            (setq jedi:complete-on-dot t)))
+;; (use-package jedi
+;;   :ensure t
+;;   :config (progn
+;;             (add-hook 'python-mode-hook 'jedi:setup)
+;;             (setq jedi:complete-on-dot t)))
 
 ;; I tried using https://github.com/tkf/emacs-jedi-direx becuase I
 ;; really like the idea but it is broken. :/
+
+
+;; https://dotnet.microsoft.com/download
+;; https://github.com/andrew-christianson/lsp-python-ms
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :config (progn
+            (add-hook 'python-mode-hook 'lsp-mode))
+  :bind (("C-c n l d" . lsp-find-definition)
+         ("C-c n l r" . lsp-find-references)))
+
+(use-package lsp-python-ms
+  :load-path "~/dotemacs/packages/lsp-python-ms"
+  :ensure nil
+  :hook (python-mode . lsp)
+  :config
+  ;; for executable of language server, if it's not symlinked on your PATH
+  (setq lsp-python-ms-executable
+        "~/bin/Microsoft.Python.LanguageServer"))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
 
 ;; ** Rust
 (use-package rust-mode
@@ -244,6 +274,34 @@
   :ensure t
   :mode (("\\.yml\\'" . yaml-mode)
          ("\\.yaml\\'" . yaml-mode)))
+
+;; ** JavaScript
+(use-package prettier-js
+  :ensure t
+  :config (progn
+            (add-hook 'js-mode-hook 'prettier-js-mode)))
+
+;; ** Clojure
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj$" . clojure-mode)))
+
+(use-package cider
+  :ensure t)
+
+;; ** Racket/Scheme
+(use-package racket-mode
+  :ensure t
+  :mode (("\\.rkt$" . racket-mode))
+  :config (progn
+            (setq racket-program "/Users/charlietanksley/.asdf/shims/racket")))
+
+(use-package flymake-racket
+  :ensure t
+  :commands (flymake-racket-add-hook)
+  :init
+  (add-hook 'scheme-mode-hook #'flymake-racket-add-hook)
+  (add-hook 'racket-mode-hook #'flymake-racket-add-hook))
 
 ;; * Old configs
 ;;;;;;;;;;;;;;
@@ -837,6 +895,20 @@
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
 ;; * Org
+
+;; Remove the built-in org
+;; From https://github.com/glasserc/etc/commit/3af96f2c780a35d35bdf1b9ac19d80fe2e6ebbf8
+(eval-when-compile
+  (require 'cl))
+(setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
+(package-built-in-p 'org)
+(setq package--builtins (assq-delete-all 'org package--builtins))
+(use-package org
+  :ensure t
+  :pin org)
+
+
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
@@ -844,6 +916,12 @@
    (ditaa . t)
    (gnuplot . t)
    (latex . t)))
+
+(use-package ox-gfm
+  :ensure t)
+
+;; We need org-tempo for <s TAB
+(require 'org-tempo)
 
 (setq org-ditaa-jar-path "/usr/local/bin/ditaa")
 (setq org-babel-ditaa-java-cmd " ")
