@@ -126,7 +126,8 @@
   :bind ("C-x g" . magit-status)
   :config (progn
             (setq magit-remote-ref-format 'remote-slash-name)
-            (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)))
+            (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)
+            (add-hook 'magit-mode-hook (lambda () (global-whitespace-mode -1)))))
 
 ;; ** Smex
 
