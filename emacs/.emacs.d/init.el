@@ -409,7 +409,7 @@
 ;; ** Ace-window
 (use-package ace-window
   :ensure t
-  :bind (("C-x i" . ace-window))
+  :bind (("C-x o" . ace-window))
   :config
   (progn (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))))
 
