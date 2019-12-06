@@ -501,6 +501,11 @@
     (add-hook 'objc-mode-hook 'irony-mode)
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
+;; ** Whitespace cleanup mode
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :config (global-whitespace-cleanup-mode 1))
+
 ;; * Org
 
 ;; Remove the built-in org
