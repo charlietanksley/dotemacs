@@ -304,6 +304,27 @@
   (add-hook 'scheme-mode-hook #'flymake-racket-add-hook)
   (add-hook 'racket-mode-hook #'flymake-racket-add-hook))
 
+;; ** Ruby
+(use-package ruby-mode
+  :config
+  (progn
+    (setq ruby-deep-indent-paren nil)
+    (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)))
+  :mode (("\\.rb$" . ruby-mode)
+         ("\\.rake$" . ruby-mode)
+         ("\\.gemspec$" . ruby-mode)
+         ("\\.ru$" . ruby-mode)
+         ("Rakefile$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("Capfile$" . ruby-mode)))
+
+(use-package rubocopfmt
+  :ensure t
+  :hook ((ruby-mode . rubocopfmt-mode)))
+
+(use-package inf-ruby
+  :ensure t)
+
 ;; * Experimental packages
 ;; Packages I want to try but I'm not confident I'll actually stick with
 
