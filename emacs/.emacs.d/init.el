@@ -118,15 +118,6 @@
 ;; let me narrow regions!
 (put 'narrow-to-region 'disabled nil)
 
-;; If asdf is installed, we want it accessable for things like
-;; flycheck
-(if (file-exists-p "/Users/charlietanksley/.asdf")
-    (progn
-      (add-to-list 'exec-path "/Users/charlietanksley/.asdf/shims")
-      (add-to-list 'exec-path "/Users/charlietanksley/.asdf/bin"))
-  nil)
-
-
 ;; * General packages
 ;; These are the packages that I'll use no matter the major mode.
 ;; **  Magit
@@ -608,6 +599,18 @@
   - [ ] Update changelog")))
 
 (global-set-key "\C-ca" 'org-agenda)
+
+;; * Wrapping up
+
+;; If asdf is installed, we want it accessable for things like
+;; flycheck.
+;;
+;; I do not understand why this has to come late in the file, but it
+;; does. Possibly it just has to come after exec-path-from-shell.
+(if (file-exists-p "/Users/charlietanksley/.asdf")
+    (setq exec-path (append '("/Users/charlietanksley/.asdf/shims" "/Users/charlietanksley/.asdf/bin")
+                            exec-path))
+  nil)
 
 (provide 'init)
 ;;; init.el ends here
