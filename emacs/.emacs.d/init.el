@@ -171,12 +171,13 @@
                   projectile-completion-system 'ivy)
             (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
 
-;; This is broken right now so just ignore it.
-;; (use-package counsel-projectile
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (add-hook 'after-init-hook 'counsel-projectile-mode)))
+;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; This doesn't seem to actually do anything...
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (progn
+    (add-hook 'after-init-hook 'counsel-projectile-mode)))
 
 ;; ** Ag
 (use-package ag
