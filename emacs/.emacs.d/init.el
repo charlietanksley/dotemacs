@@ -432,7 +432,8 @@
   :ensure t
   :config
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)))
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (add-hook 'ruby-mode-hook (lambda () (setq flycheck-disabled-checkers '(ruby-reek))))))
 
 ;; ** Web-mode
 (use-package web-mode
