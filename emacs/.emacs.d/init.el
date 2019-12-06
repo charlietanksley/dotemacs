@@ -37,7 +37,7 @@
           (defvar outline-minor-mode-prefix "\M-#")
           (setq outshine-use-speed-commands t))
   :config (progn
-            (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+            (add-hook 'outline-minor-mode-hook 'outshine-mode)
             (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)))
 
 ;; In org and outshine modes, `navi` makes `j` open up a nav panel
@@ -69,7 +69,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq global-linum-mode 1)
+(global-linum-mode 1)
 
 ;; ** Files
 
@@ -626,6 +626,7 @@
 
 
 ;; (use-package switch-window
+;;   :ensure t
 ;;   :bind ("C-x i" . switch-window))
 
 ;; ;;; YAML
@@ -792,7 +793,7 @@
 ;; ** Ace-window
 (use-package ace-window
   :ensure t
-  :bind (("M-o" . ace-window))
+  :bind (("C-x i" . ace-window))
   :config
   (progn (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))))
 
@@ -909,41 +910,42 @@
 
 
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)
-   (C . t)
-   (ditaa . t)
-   (gnuplot . t)
-   (latex . t)))
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;; '((python . t)
+;;   (C . t)
+;;   (ditaa . t)
+;;   (gnuplot . t)
+;;   (latex . t))
+;;)
 
-(use-package ox-gfm
-  :ensure t)
-
-;; We need org-tempo for <s TAB
-(require 'org-tempo)
-
-(setq org-ditaa-jar-path "/usr/local/bin/ditaa")
-(setq org-babel-ditaa-java-cmd " ")
-(setq org-babel-default-header-args:ditaa
-      '((:results . "file")
-        (:exports . "results")
-        (:java . " ")))
-(setq org-ditaa-jar-option " ")
-
-
-(require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-(setq org-latex-listings 'minted)
-
-(setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
-
-
-;; (use-package gnuplot
-;;   :ensure t)
+;;(use-package ox-gfm
+;;  :ensure t)
+;;
+;;;; We need org-tempo for <s TAB
+;;(require 'org-tempo)
+;;
+;;;;(setq org-ditaa-jar-path "/usr/local/bin/ditaa")
+;;;;(setq org-babel-ditaa-java-cmd " ")
+;;;;(setq org-babel-default-header-args:ditaa
+;;;;      '((:results . "file")
+;;;;        (:exports . "results")
+;;;;        (:java . " ")))
+;;;;(setq org-ditaa-jar-option " ")
+;;
+;;
+;;(require 'ox-latex)
+;;(add-to-list 'org-latex-packages-alist '("" "minted"))
+;;(setq org-latex-listings 'minted)
+;;
+;;(setq org-latex-pdf-process
+;;      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+;;
+;;
+;;;; (use-package gnuplot
+;;;;   :ensure t)
 (setq org-use-speed-commands t)
 (setq org-log-done 'time)
 (setq org-agenda-files '("/Users/charlietanksley/org"))

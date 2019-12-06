@@ -14,5 +14,5 @@ everything up and running here you should:
 
 That should be it for now.  Note that I've split this off from the
 rest of my dotfiles and am experimenting with slowly migrating to [[http://www.gnu.org/software/stow/][GNU
-Stow]] for my dotfile management.
+Stow]] for my dotfile management. To install, do =stow emacs= from within this directory.
 

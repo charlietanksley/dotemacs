@@ -1,4 +1,3 @@
-/.emacs.d/init.d/emacs-custom.el
 /.emacs.d/eshell/
 /.emacs.d/ac-comphist.dat
 .emacs.d/bookmarks
@@ -10,8 +9,12 @@
 *~
 elpa/
 */anaconda-mode/
-/.emacs.d/smex-items
-/.emacs.d/.last-package-update-day
-/.emacs.d/.org-id-locations
-/.emacs.d/.python-environments/
-/.emacs.d/recentf
+emacs/.emacs.d/smex-items
+emacs/.emacs.d/.last-package-update-day
+emacs/.emacs.d/.org-id-locations
+emacs/.emacs.d/.python-environments/
+
+*/.emacs.d/recentf
+*/.emacs.d/transient/
+*/.emacs.d/init.d/emacs-custom.el
+
