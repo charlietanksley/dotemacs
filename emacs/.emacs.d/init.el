@@ -118,6 +118,15 @@
 ;; let me narrow regions!
 (put 'narrow-to-region 'disabled nil)
 
+;; If asdf is installed, we want it accessable for things like
+;; flycheck
+(if (file-exists-p "/Users/charlietanksley/.asdf")
+    (progn
+      (add-to-list 'exec-path "/Users/charlietanksley/.asdf/shims")
+      (add-to-list 'exec-path "/Users/charlietanksley/.asdf/bin"))
+  nil)
+
+
 ;; * General packages
 ;; These are the packages that I'll use no matter the major mode.
 ;; **  Magit
