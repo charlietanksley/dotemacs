@@ -214,27 +214,12 @@
 (use-package py-autopep8
   :ensure t)
 
-;; The bit about installing jedi correctly from here worked for me, I
-;; think. Note that I *did not* do the complicated copying files over
-;; part:
-;; https://github.com/tkf/emacs-jedi/issues/293#issuecomment-361843980
-;; (use-package jedi
-;;   :ensure t
-;;   :config (progn
-;;             (add-hook 'python-mode-hook 'jedi:setup)
-;;             (setq jedi:complete-on-dot t)))
-
-;; I tried using https://github.com/tkf/emacs-jedi-direx becuase I
-;; really like the idea but it is broken. :/
-
-
 ;; https://dotnet.microsoft.com/download
 ;; https://github.com/andrew-christianson/lsp-python-ms
 (use-package lsp-mode
   :ensure t
   :commands lsp
-  :config (progn
-            (add-hook 'python-mode-hook 'lsp-mode))
+  :hook ((python-mode . lsp))
   :bind (("C-c n l d" . lsp-find-definition)
          ("C-c n l r" . lsp-find-references)))
 
