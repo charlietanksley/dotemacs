@@ -436,10 +436,10 @@
 ;; ** Flycheck
 (use-package flycheck
   :ensure t
+  :hook (ruby-mode . (lambda () (add-to-list 'flycheck-disabled-checkers 'ruby-reek)))
   :config
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    (add-hook 'ruby-mode-hook (lambda () (setq flycheck-disabled-checkers '(ruby-reek))))))
+    (add-hook 'after-init-hook #'global-flycheck-mode)))
 
 ;; ** Web-mode
 (use-package web-mode
