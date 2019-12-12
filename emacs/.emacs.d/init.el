@@ -145,7 +145,9 @@
   (progn
     (ivy-mode t)
     (setq ivy-initial-inputs-alist nil
+          ivy-re-builders-alist '((t . ivy--regex-fuzzy))
           ivy-use-virtual-buffers t
+          enable-recursive-minibuffers t
           ivy-count-format "%d/%d ")))
 
 ;; ** Counsel
