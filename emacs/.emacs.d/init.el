@@ -523,6 +523,9 @@
   :ensure t
   :config (global-whitespace-cleanup-mode 1))
 
+;; ** Git-link
+(use-package git-link
+  :ensure t)
 ;; * Org
 
 ;; Remove the built-in org
