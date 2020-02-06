@@ -536,18 +536,6 @@
 
 ;; * Org
 
-;; Remove the built-in org
-;; From https://github.com/glasserc/etc/commit/3af96f2c780a35d35bdf1b9ac19d80fe2e6ebbf8
-;; (eval-when-compile
-;;   (require 'cl))
-;; (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
-;; (package-built-in-p 'org)
-;; (setq package--builtins (assq-delete-all 'org package--builtins))
-;; (use-package org
-;;   :ensure t
-;;   :pin org)
-
-
 ;; (setq org-publish-project-alist
 ;;       '(("org"
 ;;          :base-directory "~/notes/"
