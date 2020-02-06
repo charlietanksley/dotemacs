@@ -556,40 +556,6 @@
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 
-;; (setq org-capture-templates
-;;       '(("r" "Retrospective" entry (file+olp "~/org/retrospectives.org" "Retrospectives" "2018 Q3")
-;;          "*** <%(org-read-date nil nil \"-Mon\")> - <%(org-read-date nil nil \"-Fri\")>
-;; **** OKR Status
-;; ***** Reduce time spent solving algorithmic challenges by 50\%
-;; %?
-;; ***** Reduce mistakes in work programming by 90\%
-;; ***** Increase (2 sprint average) velocity by 300\%
-;; **** Health Metrics
-;; ***** Stress:
-;; ***** Time management:
-;; **** Last week
-;; **** This week")
-;;         ("p" "PR" entry (file "~/org/prs.org")
-;;          "* TODO %? [0/13]
-;; :PROPERTIES:
-;; :ORDERED:  t
-;; :END:
-;;   - [ ] Claim
-;;   - [ ] Write PR description
-;;   - [ ] Understand the problem
-;;   - [ ] Write tests
-;;   - [ ] Write the code
-;;   - [ ] Document UAT test script
-;;   - [ ] Documentation
-;;   - [ ] Clean commits
-;;   - [ ] Request review
-;;   - [ ] Respond to review
-;;   - [ ] Clean commits
-;;   - [ ] Merge
-;;   - [ ] Update changelog")))
-
-;; (global-set-key "\C-ca" 'org-agenda)
-
 ;; * Wrapping up
 
 ;; If asdf is installed, we want it accessable for things like
