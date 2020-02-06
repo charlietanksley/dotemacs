@@ -523,6 +523,13 @@
   :ensure t
   :config (global-whitespace-cleanup-mode 1))
 
+;; ** Code folding with Origami
+(use-package origami
+  :ensure t
+  :init (global-origami-mode 1)
+  :bind (("C-c f o a" . origami-open-all-nodes)
+         ("C-c f c a" . origami-close-all-nodes)))
+
 ;; ** Git-link
 (use-package git-link
   :ensure t)
