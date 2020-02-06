@@ -536,14 +536,6 @@
 
 ;; * Org
 
-;; (setq org-publish-project-alist
-;;       '(("org"
-;;          :base-directory "~/notes/"
-;;          :publishing-directory "~/notes/published"
-;;          :section-numbers nil
-;;          :table-of-contents nil)))
-
-
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
