@@ -549,28 +549,6 @@
 (use-package ox-gfm
   :ensure t)
 
-  ;; (ditaa . t)
-;;;;(setq org-ditaa-jar-path "/usr/local/bin/ditaa")
-;;;;(setq org-babel-ditaa-java-cmd " ")
-;;;;(setq org-babel-default-header-args:ditaa
-;;;;      '((:results . "file")
-;;;;        (:exports . "results")
-;;;;        (:java . " ")))
-;;;;(setq org-ditaa-jar-option " ")
-;;
-;;
-;;(require 'ox-latex)
-;;(add-to-list 'org-latex-packages-alist '("" "minted"))
-;;(setq org-latex-listings 'minted)
-;;
-;;(setq org-latex-pdf-process
-;;      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-;;        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-;;        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
-;;
-;;
-;;;; (use-package gnuplot
-;;;;   :ensure t)
 (setq org-use-speed-commands t)
 (setq org-log-done 'time)
 (setq org-agenda-files '("/Users/charlietanksley/org"))
