@@ -533,36 +533,43 @@
 ;; ** Git-link
 (use-package git-link
   :ensure t)
+
 ;; * Org
 
 ;; Remove the built-in org
 ;; From https://github.com/glasserc/etc/commit/3af96f2c780a35d35bdf1b9ac19d80fe2e6ebbf8
-(eval-when-compile
-  (require 'cl))
-(setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
-(package-built-in-p 'org)
-(setq package--builtins (assq-delete-all 'org package--builtins))
-(use-package org
-  :ensure t
-  :pin org)
+;; (eval-when-compile
+;;   (require 'cl))
+;; (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
+;; (package-built-in-p 'org)
+;; (setq package--builtins (assq-delete-all 'org package--builtins))
+;; (use-package org
+;;   :ensure t
+;;   :pin org)
 
 
+;; (setq org-publish-project-alist
+;;       '(("org"
+;;          :base-directory "~/notes/"
+;;          :publishing-directory "~/notes/published"
+;;          :section-numbers nil
+;;          :table-of-contents nil)))
 
-;;(org-babel-do-load-languages
-;; 'org-babel-load-languages
-;; '((python . t)
-;;   (C . t)
-;;   (ditaa . t)
-;;   (gnuplot . t)
-;;   (latex . t))
-;;)
 
-;;(use-package ox-gfm
-;;  :ensure t)
-;;
-;;;; We need org-tempo for <s TAB
-;;(require 'org-tempo)
-;;
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (ruby . t)
+   (C . t)
+   (gnuplot . t)
+   (latex . t))
+ )
+
+(require 'ox-md)
+(use-package ox-gfm
+  :ensure t)
+
+  ;; (ditaa . t)
 ;;;;(setq org-ditaa-jar-path "/usr/local/bin/ditaa")
 ;;;;(setq org-babel-ditaa-java-cmd " ")
 ;;;;(setq org-babel-default-header-args:ditaa
@@ -591,39 +598,39 @@
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 
-(setq org-capture-templates
-      '(("r" "Retrospective" entry (file+olp "~/org/retrospectives.org" "Retrospectives" "2018 Q3")
-         "*** <%(org-read-date nil nil \"-Mon\")> - <%(org-read-date nil nil \"-Fri\")>
-**** OKR Status
-***** Reduce time spent solving algorithmic challenges by 50\%
-%?
-***** Reduce mistakes in work programming by 90\%
-***** Increase (2 sprint average) velocity by 300\%
-**** Health Metrics
-***** Stress:
-***** Time management:
-**** Last week
-**** This week")
-        ("p" "PR" entry (file "~/org/prs.org")
-         "* TODO %? [0/13]
-:PROPERTIES:
-:ORDERED:  t
-:END:
-  - [ ] Claim
-  - [ ] Write PR description
-  - [ ] Understand the problem
-  - [ ] Write tests
-  - [ ] Write the code
-  - [ ] Document UAT test script
-  - [ ] Documentation
-  - [ ] Clean commits
-  - [ ] Request review
-  - [ ] Respond to review
-  - [ ] Clean commits
-  - [ ] Merge
-  - [ ] Update changelog")))
+;; (setq org-capture-templates
+;;       '(("r" "Retrospective" entry (file+olp "~/org/retrospectives.org" "Retrospectives" "2018 Q3")
+;;          "*** <%(org-read-date nil nil \"-Mon\")> - <%(org-read-date nil nil \"-Fri\")>
+;; **** OKR Status
+;; ***** Reduce time spent solving algorithmic challenges by 50\%
+;; %?
+;; ***** Reduce mistakes in work programming by 90\%
+;; ***** Increase (2 sprint average) velocity by 300\%
+;; **** Health Metrics
+;; ***** Stress:
+;; ***** Time management:
+;; **** Last week
+;; **** This week")
+;;         ("p" "PR" entry (file "~/org/prs.org")
+;;          "* TODO %? [0/13]
+;; :PROPERTIES:
+;; :ORDERED:  t
+;; :END:
+;;   - [ ] Claim
+;;   - [ ] Write PR description
+;;   - [ ] Understand the problem
+;;   - [ ] Write tests
+;;   - [ ] Write the code
+;;   - [ ] Document UAT test script
+;;   - [ ] Documentation
+;;   - [ ] Clean commits
+;;   - [ ] Request review
+;;   - [ ] Respond to review
+;;   - [ ] Clean commits
+;;   - [ ] Merge
+;;   - [ ] Update changelog")))
 
-(global-set-key "\C-ca" 'org-agenda)
+;; (global-set-key "\C-ca" 'org-agenda)
 
 ;; * Wrapping up
 
