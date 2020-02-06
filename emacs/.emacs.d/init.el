@@ -572,3 +572,6 @@
 ;;; init.el ends here
 
 
+
+
+(setq frame-title-format (quote (:eval (if (buffer-file-name) "%b — %f" "%b"))))
