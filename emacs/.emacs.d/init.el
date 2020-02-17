@@ -541,12 +541,12 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((python . t)
-   (ruby . t)
-   (C . t)
+ '((C . t)
    (gnuplot . t)
-   (latex . t))
- )
+   (latex . t)
+   (plantuml . t)
+   (python . t)
+   (ruby . t)))
 
 (require 'ox-md)
 (use-package ox-gfm
