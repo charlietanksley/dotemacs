@@ -198,6 +198,9 @@
   :ensure t
   :config
   (editorconfig-mode 1))
+;; ** Fish shell
+(use-package fish-mode
+  :ensure t)
 ;; * Language specific packages
 ;; ** Lua
 (use-package lua-mode
