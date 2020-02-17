@@ -559,6 +559,24 @@
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 
+;; ** Plantuml
+
+;; brew install plantuml
+;; find /usr/local/Cellar/ -name plantuml.jar
+(setq org-plantuml-jar-path
+      (expand-file-name "/usr/local/Cellar/plantuml/1.2020.0/libexec/plantuml.jar"))
+
+;; needed for org export to html
+(use-package htmlize
+  :ensure t)
+
+(use-package plantuml-mode
+  :ensure t
+  :init (progn
+          (setq plantuml-default-exec-mode 'jar)
+          (setq plantuml-jar-path
+                (expand-file-name "/usr/local/Cellar/plantuml/1.2020.0/libexec/plantuml.jar"))))
+
 ;; * Wrapping up
 
 ;; If asdf is installed, we want it accessable for things like
