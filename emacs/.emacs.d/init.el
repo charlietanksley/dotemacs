@@ -322,6 +322,9 @@
 (use-package inf-ruby
   :ensure t)
 
+(use-package rspec-mode
+  :ensure t)
+
 ;; * Experimental packages
 ;; Packages I want to try but I'm not confident I'll actually stick with
 
