@@ -587,6 +587,18 @@
           (setq plantuml-jar-path
                 (expand-file-name "/usr/local/Cellar/plantuml/1.2020.0/libexec/plantuml.jar"))))
 
+;; * Functions
+;; ** adjust-font-size
+(defun adjust-font-size (n)
+  "Set font size to N, as passed in via interactive function call."
+  (interactive "n Font size: ")
+  (set-font-size n))
+
+(defun set-font-size (size)
+  "Set font size to SIZE."
+  (set-face-attribute 'default nil
+                      :family "Menlo" :height size :weight 'normal))
+
 ;; * Wrapping up
 
 ;; If asdf is installed, we want it accessable for things like
