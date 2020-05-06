@@ -540,6 +540,13 @@
 (use-package git-link
   :ensure t)
 
+;; ** Autocomplete stuff
+(use-package auto-complete
+  :ensure t
+  :config
+  (progn
+    (ac-config-default)
+    (add-to-list 'ac-modes 'ruby-mode)))
 ;; * Org
 
 (org-babel-do-load-languages
