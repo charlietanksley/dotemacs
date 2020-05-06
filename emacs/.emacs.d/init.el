@@ -600,7 +600,7 @@
 (defun set-font-size (size)
   "Set font size to SIZE."
   (set-face-attribute 'default nil
-                      :family "Menlo" :height size :weight 'normal))
+                      :family "Menlo" :height (* size 10) :weight 'normal))
 
 ;; * Wrapping up
 
