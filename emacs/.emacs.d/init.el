@@ -409,8 +409,11 @@
 ;; This seems cool but maybe conflicts with outshine?
 (use-package lispy
   :ensure t
-  :config
-  (progn (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))))
+  :hook (
+         (emacs-lisp-mode . (lambda () (lispy-mode 1)))
+         (clojure-mode . (lambda () (lispy-mode 1)))))
+
+
 
 ;; ** Ipy
 ;; https://github.com/abo-abo/lpy
