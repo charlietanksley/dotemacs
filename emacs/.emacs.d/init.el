@@ -247,9 +247,9 @@
   :ensure t
   :commands company-lsp)
 
-(use-package robe
-  :ensure t
-  :hook ((ruby-mode . robe)))
+;; (use-package robe
+;;   :ensure t
+;;   :hook ((ruby-mode . robe)))
 
 ;; ** Rust
 (use-package rust-mode
