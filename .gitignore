@@ -18,3 +18,7 @@ emacs/.emacs.d/.python-environments/
 */.emacs.d/transient/
 */.emacs.d/init.d/emacs-custom.el
 
+/.emacs.d.old/
+/emacs/.emacs.d/ac-comphist.dat
+/emacs/.emacs.d/eshell/
+/emacs/.emacs.d/flycheck-alex.el
