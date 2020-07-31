@@ -202,6 +202,9 @@
 (use-package fish-mode
   :ensure t)
 ;; * Language specific packages
+;; ** COBOL
+(use-package cobol-mode
+  :ensure t)
 ;; ** Lua
 (use-package lua-mode
   :ensure t
