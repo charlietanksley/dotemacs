@@ -205,6 +205,11 @@
 ;; ** COBOL
 (use-package cobol-mode
   :ensure t)
+
+;; ** Geiser (Scheme)
+(use-package geiser
+  :ensure t)
+
 ;; ** Lua
 (use-package lua-mode
   :ensure t
@@ -414,7 +419,8 @@
   :ensure t
   :hook (
          (emacs-lisp-mode . (lambda () (lispy-mode 1)))
-         (clojure-mode . (lambda () (lispy-mode 1)))))
+         (clojure-mode . (lambda () (lispy-mode 1)))
+         (scheme-mode . (lambda () (lispy-mode 1)))))
 
 
 
@@ -580,7 +586,7 @@
 ;; brew install plantuml
 ;; find /usr/local/Cellar/ -name plantuml.jar
 (setq org-plantuml-jar-path
-      (expand-file-name "/usr/local/Cellar/plantuml/1.2020.0/libexec/plantuml.jar"))
+      (expand-file-name "/usr/local/Cellar//plantuml/1.2020.15/libexec/plantuml.jar"))
 
 ;; needed for org export to html
 (use-package htmlize
@@ -588,10 +594,11 @@
 
 (use-package plantuml-mode
   :ensure t
+  :mode (("\\.plantuml\\'" . plantuml-mode))
   :init (progn
           (setq plantuml-default-exec-mode 'jar)
           (setq plantuml-jar-path
-                (expand-file-name "/usr/local/Cellar/plantuml/1.2020.0/libexec/plantuml.jar"))))
+                (expand-file-name "/usr/local/Cellar//plantuml/1.2020.15/libexec/plantuml.jar"))))
 
 ;; * Functions
 ;; ** adjust-font-size
