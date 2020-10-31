@@ -184,10 +184,6 @@
   (progn
     (add-hook 'after-init-hook 'counsel-projectile-mode)))
 
-;; ** Ag
-(use-package ag
-  :ensure t)
-
 ;; ** Exec path from shell
 (use-package exec-path-from-shell
   :ensure t
@@ -354,28 +350,17 @@
   :config
   (add-hook 'after-init-hook 'which-key-mode))
 
-
-
-
 ;; ** Expand Region
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-;; ** Focus
-
-;; Turn off highlighting for everythign but the region under the cursor?
-(use-package focus
-    :ensure t)
-
 ;; ** Time machine
-
 ;; Move through versions of a file
 (use-package git-timemachine
   :ensure t)
 
 ;; ** Dumb jump
-
 ;; Apparently this is a decent tag alternative?
 (use-package dumb-jump
     :ensure t
@@ -423,12 +408,6 @@
          (scheme-mode . (lambda () (lispy-mode 1)))))
 
 
-
-;; ** Ipy
-;; https://github.com/abo-abo/lpy
-;; Does't seem to be in melpa yet
-;; (use-package lpy
-;;   :ensure t)
 
 ;; ** Ace-window
 (use-package ace-window
