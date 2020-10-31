@@ -238,6 +238,11 @@
   :bind (("C-c n l d" . lsp-find-definition)
          ("C-c n l r" . lsp-find-references)))
 
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-solargraph/
+;; https://github.com/joaotavora/eglot
+(use-package eglot
+  :ensure t)
+
 (use-package lsp-python-ms
   :load-path "~/dotemacs/packages/lsp-python-ms"
   :ensure nil
