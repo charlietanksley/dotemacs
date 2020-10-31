@@ -157,6 +157,7 @@
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)))
+;; TODO turn on counsel mode?
 
 ;; ** Swiper
 (use-package swiper
@@ -190,10 +191,12 @@
   :init (progn
           (exec-path-from-shell-initialize)))
 ;; ** Editorconfig
+;; TODO this isn't set up right. I never actually use it?
 (use-package editorconfig
   :ensure t
   :config
   (editorconfig-mode 1))
+
 ;; ** Fish shell
 (use-package fish-mode
   :ensure t)
@@ -447,6 +450,7 @@
           '(("jsx"  . "/Users/charlietanksley/git/monetate-server//ui/js/.*/.\\.js[x]?\\'")))))
 
 ;; ** Smartparens
+;; TODO Do I want to configure this to be useful for Ruby?
 (use-package smartparens
   :ensure t
   :config
@@ -610,3 +614,7 @@
 
 
 (setq frame-title-format (quote (:eval (if (buffer-file-name) "%b — %f" "%b"))))
+
+;; TODO Look into:
+;; - lsp-mode, eglot (language servers)
+;; - Gdb, dap-mode (debuggers)
