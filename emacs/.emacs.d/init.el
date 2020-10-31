@@ -332,6 +332,12 @@
 (use-package rspec-mode
   :ensure t)
 
+;; ** SQL
+(use-package sqlformat
+  :ensure t
+  :init
+  (setq sqlformat-command 'pgformatter))
+
 ;; * Experimental packages
 ;; Packages I want to try but I'm not confident I'll actually stick with
 
