@@ -492,12 +492,6 @@
   (progn
     (add-hook 'elixir-mode-hook 'alchemist-mode)))
 
-;; ** Indent tools
-(use-package indent-tools
-  :ensure t
-  :bind (("C-c >" . indent-tools-hydra/body)))
-
-
 ;; ** Arduino
 (use-package arduino-mode
   :ensure t)
@@ -523,6 +517,11 @@
 (use-package whitespace-cleanup-mode
   :ensure t
   :config (global-whitespace-cleanup-mode 1))
+
+;; ** Indent tools
+(use-package indent-tools
+  :ensure t
+  :bind (("C-c >" . indent-tools-hydra/body)))
 
 ;; ** Code folding with Origami
 (use-package origami
