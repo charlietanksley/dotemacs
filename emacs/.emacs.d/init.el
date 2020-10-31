@@ -528,6 +528,8 @@
   :ensure t
   :init (global-origami-mode 1)
   :bind (("C-c f o a" . origami-open-all-nodes)
+         ("C-c f o n" . origami-open-node)
+         ("C-c f c n" . origami-close-node)
          ("C-c f c a" . origami-close-all-nodes)))
 
 ;; ** Git-link
