@@ -570,7 +570,8 @@
    (latex . t)
    (plantuml . t)
    (python . t)
-   (ruby . t)))
+   (ruby . t)
+   (sql . t)))
 
 (require 'ox-md)
 (use-package ox-gfm
