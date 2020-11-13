@@ -583,6 +583,7 @@
 
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
+(setq org-confirm-babel-evaluate nil)
 
 ;; ** Plantuml
 
