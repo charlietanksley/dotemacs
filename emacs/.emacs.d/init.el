@@ -245,7 +245,10 @@
 ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-solargraph/
 ;; https://github.com/joaotavora/eglot
 (use-package eglot
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+    (add-hook 'ruby-mode-hook 'eglot-ensure)))
 
 (use-package lsp-python-ms
   :load-path "~/dotemacs/packages/lsp-python-ms"
