@@ -69,7 +69,11 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-linum-mode 1)
+;; hoping this helps with some wild cpu-usage I'm seeing:
+;; https://github.com/gregsexton/origami.el/issues/39
+(use-package nlinum
+  :ensure t
+  :config (global-nlinum-mode 1))
 
 ;; ** Files
 
