@@ -590,7 +590,7 @@
 ;; brew install plantuml
 ;; find /usr/local/Cellar/ -name plantuml.jar
 (setq org-plantuml-jar-path
-      (expand-file-name "/usr/local/Cellar//plantuml/1.2020.15/libexec/plantuml.jar"))
+      (expand-file-name "/usr/local/Cellar//plantuml/1.2020.19/libexec/plantuml.jar"))
 
 ;; needed for org export to html
 (use-package htmlize
@@ -602,7 +602,7 @@
   :init (progn
           (setq plantuml-default-exec-mode 'jar)
           (setq plantuml-jar-path
-                (expand-file-name "/usr/local/Cellar//plantuml/1.2020.15/libexec/plantuml.jar"))))
+                (expand-file-name "/usr/local/Cellar//plantuml/1.2020.19/libexec/plantuml.jar"))))
 
 ;; * Functions
 ;; ** adjust-font-size
