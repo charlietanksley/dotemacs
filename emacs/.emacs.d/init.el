@@ -127,7 +127,8 @@
 ;; **  Magit
 (use-package magit
   :ensure t
-  :bind ("C-x g" . magit-status)
+  :bind (("C-x g" . magit-status)
+         ("C-c g" . magit-file-dispatch))
   :config (progn
             (setq magit-remote-ref-format 'remote-slash-name)
             (add-hook 'magit-log-mode-hook 'turn-on-auto-fill)
