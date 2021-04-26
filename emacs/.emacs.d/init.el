@@ -586,12 +586,9 @@
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 (setq org-confirm-babel-evaluate nil)
 
-;; ** Plantuml
 
+;; ** Plantuml
 ;; brew install plantuml
-;; find /usr/local/Cellar/ -name plantuml.jar
-(setq org-plantuml-jar-path
-      (expand-file-name "/usr/local/Cellar//plantuml/1.2020.19/libexec/plantuml.jar"))
 
 ;; needed for org export to html
 (use-package htmlize
@@ -601,9 +598,9 @@
   :ensure t
   :mode (("\\.plantuml\\'" . plantuml-mode))
   :init (progn
-          (setq plantuml-default-exec-mode 'jar)
-          (setq plantuml-jar-path
-                (expand-file-name "/usr/local/Cellar//plantuml/1.2020.19/libexec/plantuml.jar"))))
+          (setq plantuml-default-exec-mode 'executable)
+          (setq org-plantuml-exec-mode 'plantuml)
+          (setq plantuml-output-type 'png)))
 
 ;; * Functions
 ;; ** adjust-font-size
