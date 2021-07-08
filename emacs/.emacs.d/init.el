@@ -582,6 +582,7 @@
 (setq org-log-done 'time)
 (setq org-agenda-files '("/Users/charlietanksley/org"))
 (setq org-startup-folded t)
+(add-hook 'org-mode-hook 'org-indent-mode)
 
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
