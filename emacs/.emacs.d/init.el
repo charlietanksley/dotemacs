@@ -581,6 +581,7 @@
 (setq org-use-speed-commands t)
 (setq org-log-done 'time)
 (setq org-agenda-files '("/Users/charlietanksley/org"))
+(setq org-startup-folded t)
 
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "CANCELED")))
