@@ -588,6 +588,8 @@
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 (setq org-confirm-babel-evaluate nil)
 
+;; I think this is required for <sTAB to work?
+(require 'org-tempo)
 
 ;; ** Plantuml
 ;; brew install plantuml
