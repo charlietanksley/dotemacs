@@ -350,7 +350,9 @@
   :ensure t
   :init
   (setq sqlformat-command 'pgformatter))
-
+;; ** R
+(use-package ess
+  :ensure t)
 ;; * Experimental packages
 ;; Packages I want to try but I'm not confident I'll actually stick with
 
@@ -571,6 +573,7 @@
    (latex . t)
    (plantuml . t)
    (python . t)
+   (R . t)
    (ruby . t)
    (sql . t)))
 
@@ -588,6 +591,8 @@
       '((sequence "TODO" "|" "DONE" "CANCELED")))
 (setq org-confirm-babel-evaluate nil)
 
+;; I think this is required for <sTAB to work?
+(require 'org-tempo)
 
 ;; ** Plantuml
 ;; brew install plantuml
